@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+h2 {
+    margin-right: auto;
+}
+
 .cards-grid {
     max-width: 1200px;
     padding: 1rem;
@@ -26,8 +30,12 @@
 
 .card-headings {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+}
+
+.timer {
+    margin-left: 1rem;
 }
 
 .card-recipe-content {
@@ -37,8 +45,4 @@
 .instructions {
     flex-grow: 1.3;
     margin-left: 1rem;
-}
-
-.far {
-    background-color: brown;
 }
