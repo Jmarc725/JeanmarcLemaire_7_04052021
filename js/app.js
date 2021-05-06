@@ -1,18 +1,19 @@
 const $recipesName = document.querySelector('.recipes-name')
-
+// const $recipeList = document.createElement('li')
+// $recipesName.appendChild($recipeList)
+const $timeRecipe = document.querySelector('.time-recipe')
 
 fetch("assets/recipes.json")
     .then((res) => res.json())
     .then((data) => {
         const recipes = data.recipes
 
-        let recipe = ""
         // Méthode à la papa
         for (let i = 0; i < recipes.length; i++) {
-            recipe += recipes[i].name
+            // $recipeList.innerHTML += recipes[i].name
+            $timeRecipe.innerHTML += `<li>${recipes[i].time}</li>`    
             // Prochaine étape faire 
         }
-        $recipesName.innerHTML = `<li>${recipe}</li>`
     })
     
     .catch(() => console.log("==="))
