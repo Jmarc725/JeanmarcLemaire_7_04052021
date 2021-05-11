@@ -18,12 +18,6 @@ fetch("assets/recipes.json")
 
 
         // for(let i = 0; i < recipes.length; i++){
-        //     $recipesName.innerHTML = `<li>${recipes[i].name}</li>`
-        //     $recipesTime.innerHTML = `<li>${recipes[i].time}</li>`
-        //     $recipesDescription.innerHTML = `<li>${recipes[i].description}</li>`
-        // }
-
-        // for(let i = 0; i < recipes.length; i++){
         //     recipe.innerHTML += `<ul><li>${recipes[i].name}</li><li>${recipes[i].time}</li><li>${recipes[i].description}</li></ul>`
         // }
 
@@ -34,16 +28,6 @@ fetch("assets/recipes.json")
                             <p class="recipe-description">${recipe.description}</p>`
         }
         document.querySelector('main').innerHTML = contentHtml
-
-       
-
-        // function recipeCard(object, prop){
-        //     let recipeItem = ""
-        //     for (let i = 0; i < object.length; i++) {
-        //         recipeItem += object[i].prop
-        //     }
-        //     return recipeItem
-        // }
 
     })
     
