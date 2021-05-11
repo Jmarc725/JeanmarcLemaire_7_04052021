@@ -2,7 +2,8 @@ const $recipesName = document.querySelector('.recipes-name')
 const $recipesTime = document.querySelector('.recipes-time')
 const $recipesIngredients = document.querySelector('.recipes-ingredients')
 const $recipesDescription = document.querySelector('.recipes-description')
-
+const $recipesWrapper = document.querySelector('.card-recipe-wrapper')
+const $recipesHeading = document.querySelector('.card-headings')
 
 
 fetch("assets/recipes.json")
@@ -10,15 +11,9 @@ fetch("assets/recipes.json")
     .then((data) => {
         const recipes = data.recipes
 
-        let contentHtml = ''
 
         for(let i = 0; i < recipes.length; i++){
-            let recipeCard = recipes[i]
-            contentHtml += $recipesName.name
-                            $recipesTime.time
-                            $recipesDescription.description
         }
-        document.querySelector('main').innerHTML = contentHtml
 
     })
     
