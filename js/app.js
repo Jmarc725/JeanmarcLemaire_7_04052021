@@ -1,19 +1,25 @@
 const $recipesName = document.querySelector('.recipes-name')
-// const $recipeList = document.createElement('li')
-// $recipesName.appendChild($recipeList)
-const $timeRecipe = document.querySelector('.time-recipe')
+const $recipesTime = document.querySelector('recipes-time')
+const $recipeDescription = document.querySelector('recipes-description')
+
 
 fetch("assets/recipes.json")
     .then((res) => res.json())
     .then((data) => {
         const recipes = data.recipes
 
-        // Méthode à la papa
-        for (let i = 0; i < recipes.length; i++) {
-            // $recipeList.innerHTML += recipes[i].name
-            $timeRecipe.innerHTML += `<li>${recipes[i].time}</li>`    
-            // Prochaine étape faire 
+        // for(let i = 0; i < recipes.length; i++){
+        //     $recipesName.innerHTML += `<li>${recipes[i].name}</li>`
+        // }
+
+        function recipeCard(object, prop){
+            let recipeItem = ""
+            for (let i = 0; i < object.length; i++) {
+                recipeItem += object[i].prop
+            }
+            return recipeItem
         }
+
     })
     
     .catch(() => console.log("==="))
