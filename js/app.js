@@ -1,50 +1,53 @@
-// const $recipesName = document.querySelector('.recipes-name')
-// const $recipesTime = document.querySelector('.recipes-time')
-// const $recipesIngredients = document.querySelector('.recipes-ingredients')
-// const $recipesDescription = document.querySelector('.recipes-description')
 
-// let $eachRecipe = document.createElement('div')
-// let $allRecipes = document.querySelector('.cards-grid')
-// $allRecipes.appendChild.$eachRecipe
+function createRecipeCards(recipes) {
+    let contentHtml = ''
 
-// let recipe = document.querySelector('.wrapper-recipe')
+    // Parcourt ton tableau de recettes (50)
+    for (let i = 0; i < recipes.length; i++) {
+        // ingredientsContentHtml réinitialisé à chaque tour de boucle et prend pour valeur <ul>
+        let ingredientsContentHtml = '<ul>'
 
-let contentHtml = ''
+        // console.log(recipes[i].time)
+
+        // à chaque tour de boucle, je rajoute le li avec le nom de mon ingrédient
+        // Parcourt ton tableau d'ingrédients pour chaque recette
+        for (let y = 0; y < recipes[i].ingredients.length; y++) {
+            ingredientsContentHtml += `<li>
+            ${recipes[i].ingredients[y].ingredient} 
+            ${recipes[i].ingredients[y].quantity} 
+            ${recipes[i].ingredients[y].unit}
+            </li>`
+        }
+
+        // là, je ferme la balise ul
+        ingredientsContentHtml += '</ul>'
+
+        // là, t'injectes tes éléments de recette (nom, temps, description, ingrédients) dedans
+        contentHtml += `
+            <div class="recipe-card">
+            <h2 class="recipe-name">
+                ${recipes[i].name}
+                <span class="recipe-time">
+                <i class="far fa-clock"></i>
+                ${recipes[i].time} min</span>
+            </h2>
+            ${ingredientsContentHtml}
+            <p class="recipe-description">${recipes[i].description}</p>
+            </div>
+        `
+    }
+    
+    return contentHtml
+}
 
 fetch("assets/recipes.json")
     .then((res) => res.json())
     .then((data) => {
         const recipes = data.recipes
+        
+        const recipeCardsHtml = createRecipeCards(recipes)
 
-
-        // for(let i = 0; i < recipes.length; i++){
-        //     $recipesName.innerHTML = `<li>${recipes[i].name}</li>`
-        //     $recipesTime.innerHTML = `<li>${recipes[i].time}</li>`
-        //     $recipesDescription.innerHTML = `<li>${recipes[i].description}</li>`
-        // }
-
-        // for(let i = 0; i < recipes.length; i++){
-        //     recipe.innerHTML += `<ul><li>${recipes[i].name}</li><li>${recipes[i].time}</li><li>${recipes[i].description}</li></ul>`
-        // }
-
-        for(let i = 0; i < recipes.length; i++){
-            let recipe = recipes[i]
-            contentHtml += `<h2 class="recipe-name">${recipe.name}</h2>
-                            <p class="recipe-time">${recipe.time}</p>
-                            <p class="recipe-description">${recipe.description}</p>`
-        }
-        document.querySelector('main').innerHTML = contentHtml
-
-       
-
-        // function recipeCard(object, prop){
-        //     let recipeItem = ""
-        //     for (let i = 0; i < object.length; i++) {
-        //         recipeItem += object[i].prop
-        //     }
-        //     return recipeItem
-        // }
-
+        document.querySelector('main').innerHTML = recipeCardsHtml
     })
     
-    .catch(() => console.log("==="))
+    .catch((err) => console.log("===", err))
