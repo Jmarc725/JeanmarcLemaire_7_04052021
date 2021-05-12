@@ -24,7 +24,6 @@
 }
 
 .card-recipe-wrapper {
-    height: 185px;
     padding: 0 1.5rem 0;
     background-color: darkgrey;
 }
@@ -35,7 +34,7 @@
     align-items: center;
 }
 
-.timer {
+.recipes-time {
     margin-left: 1rem;
 }
 
