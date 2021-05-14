@@ -25,14 +25,14 @@ function createRecipeCards(recipes) {
         // là, t'injectes tes éléments de recette (nom, temps, description, ingrédients) dedans
         contentHtml += `
             <div class="recipe-card">
-            <h2 class="recipe-name">
-                ${recipes[i].name}
-                <span class="recipe-time">
-                <i class="far fa-clock"></i>
-                ${recipes[i].time} min</span>
-            </h2>
-            ${ingredientsContentHtml}
-            <p class="recipe-description">${recipes[i].description}</p>
+                <h2 class="recipe-name">
+                    ${recipes[i].name}
+                    <span class="recipe-time">
+                    <i class="far fa-clock"></i>
+                    ${recipes[i].time} min</span>
+                </h2>
+                ${ingredientsContentHtml}
+                <p class="recipe-description">${recipes[i].description}</p>
             </div>
         `
     }
@@ -40,12 +40,36 @@ function createRecipeCards(recipes) {
     return contentHtml
 }
 
+
 fetch("assets/recipes.json")
     .then((res) => res.json())
     .then((data) => {
         const recipes = data.recipes
         
         const recipeCardsHtml = createRecipeCards(recipes)
+      
+    
+// for(let i = 0; i < recipes.length; i++){
+//     for(j = 0; j < recipes[i].ingredients.length; j++){
+//         let checkProperty = recipes[i].ingredients[j].hasOwnProperty('unit')
+//         let addMissingProperty = Object.assign(recipes[i].ingredients[j], {unit : ""})
+
+//         if(!checkProperty){
+//             console.log(checkProperty)
+//             console.log(addMissingProperty)
+//         }
+//     }
+// }
+    
+
+        let checkProperty = recipes[0].ingredients[4].hasOwnProperty('unit')
+        let addMissingProperty = Object.assign(recipes[0].ingredients[4], {unit : ""})
+
+        if(!checkProperty){
+            console.log(checkProperty)
+            console.log(addMissingProperty)
+        }
+         
 
         document.querySelector('main').innerHTML = recipeCardsHtml
     })
