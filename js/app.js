@@ -26,10 +26,10 @@ function createRecipeCards(recipes) {
         contentHtml += `
             <div class="recipe-card">
                 <h2 class="recipe-name">
-                    ${recipes[i].name}
-                    <span class="recipe-time">
-                    <i class="far fa-clock"></i>
-                    ${recipes[i].time} min</span>
+                ${recipes[i].name}
+                <span class="recipe-time">
+                <i class="far fa-clock"></i>
+                ${recipes[i].time} min</span>
                 </h2>
                 ${ingredientsContentHtml}
                 <p class="recipe-description">${recipes[i].description}</p>
@@ -53,23 +53,26 @@ fetch("assets/recipes.json")
 //     for(j = 0; j < recipes[i].ingredients.length; j++){
 //         let checkProperty = recipes[i].ingredients[j].hasOwnProperty('unit')
 //         let addMissingProperty = Object.assign(recipes[i].ingredients[j], {unit : ""})
-
-//         if(!checkProperty){
 //             console.log(checkProperty)
+
+        // if(!checkProperty){
+            // console.log(checkProperty)
 //             console.log(addMissingProperty)
-//         }
-//     }
+        // }
+    // }
 // }
     
+        console.log(recipes[0].ingredients[4].hasOwnProperty('unit'))
+        console.log(recipes[0].ingredients[4].unit= "40")
+        
+        // let addMissingProperty = Object.assign(recipes[0].ingredients[4], {unit : ""})
 
-        let checkProperty = recipes[0].ingredients[4].hasOwnProperty('unit')
-        let addMissingProperty = Object.assign(recipes[0].ingredients[4], {unit : ""})
-
-        if(!checkProperty){
-            console.log(checkProperty)
-            console.log(addMissingProperty)
-        }
+        // if(!checkProperty){
+            // console.log(checkProperty)
+            // console.log(addMissingProperty)
+        // }
          
+    
 
         document.querySelector('main').innerHTML = recipeCardsHtml
     })
