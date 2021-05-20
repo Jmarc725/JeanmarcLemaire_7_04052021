@@ -5,37 +5,24 @@ function createRecipeCards(recipes) {
     // Parcourt ton tableau de recettes (50)
     for (let i = 0; i < recipes.length; i++) {
         // ingredientsContentHtml réinitialisé à chaque tour de boucle et prend pour valeur <ul>
-        let ingredientsList = '<ul>'
+        let ingredientsList = '<ul class="ingredient-list">'
 
-        // console.log(recipes[i].time)
 
         // à chaque tour de boucle, je rajoute le li avec le nom de mon ingrédient
         // Parcourt ton tableau d'ingrédients pour chaque recette
         for (let y = 0; y < recipes[i].ingredients.length; y++) {
-            let ingredient = '<li>'
+            let ingredient = '<li class="ingredient">'
+
+            ingredient += `${recipes[i].ingredients[y].ingredient} ` // tomate
 
             if (recipes[i].ingredients[y].quantity !== undefined) {
-                ingredient += recipes[i].ingredients[y].quantity
+                ingredient += `${recipes[i].ingredients[y].quantity} `
             }
-
-            ingredient += ' '
 
             if (recipes[i].ingredients[y].unit !== undefined) {
                 ingredient += recipes[i].ingredients[y].unit
             }
-
-            ingredient += ' '
-            
-
-            ingredient += recipes[i].ingredients[y].ingredient // tomate
-            
-            
-
-            // ingredientsContentHtml += `<li>
-            //     ${recipes[i].ingredients[y].ingredient} 
-            //     ${recipes[i].ingredients[y].quantity} 
-            //     ${recipes[i].ingredients[y].unit}
-            // </li>`
+                                    
             ingredient += '</li>' // <ul><li>tomate</li>
 
             ingredientsList += ingredient
@@ -48,10 +35,7 @@ function createRecipeCards(recipes) {
         contentHtml += `
             <div class="recipe-card">
                 <h2 class="recipe-name">
-                ${recipes[i].name}
-                <span class="recipe-time">
-                <i class="far fa-clock"></i>
-                ${recipes[i].time} min</span>
+                ${recipes[i].name}<span class="recipe-time"><i class="far fa-clock"></i>${recipes[i].time} min</span>
                 </h2>
                 ${ingredientsList}
                 <p class="recipe-description">${recipes[i].description}</p>
@@ -66,36 +50,9 @@ function createRecipeCards(recipes) {
 fetch("assets/recipes.json")
     .then((res) => res.json())
     .then((data) => {
+        
         const recipes = data.recipes
-        
         const recipeCardsHtml = createRecipeCards(recipes)
-      
-    
-// for(let i = 0; i < recipes.length; i++){
-//     for(j = 0; j < recipes[i].ingredients.length; j++){
-//         let checkProperty = recipes[i].ingredients[j].hasOwnProperty('unit')
-//         let addMissingProperty = Object.assign(recipes[i].ingredients[j], {unit : ""})
-//             console.log(checkProperty)
-
-        // if(!checkProperty){
-            // console.log(checkProperty)
-//             console.log(addMissingProperty)
-        // }
-    // }
-// }
-    
-        console.log(recipes[0].ingredients)
-        console.log(recipes[0].ingredients[4].hasOwnProperty('unit'))
-        // console.log(recipes[0].ingredients[4].unit= "40")
-        
-        // let addMissingProperty = Object.assign(recipes[0].ingredients[4], {unit : ""})
-
-        // if(!checkProperty){
-            // console.log(checkProperty)
-            // console.log(addMissingProperty)
-        // }
-         
-    
 
         document.querySelector('main').innerHTML = recipeCardsHtml
     })
