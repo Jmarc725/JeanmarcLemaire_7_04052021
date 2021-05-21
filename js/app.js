@@ -5,7 +5,7 @@ function createRecipeCards(recipes) {
     // Parcourt ton tableau de recettes (50)
     for (let i = 0; i < recipes.length; i++) {
         // ingredientsContentHtml réinitialisé à chaque tour de boucle et prend pour valeur <ul>
-        let ingredientsList = '<ul class="ingredient-list">'
+        let ingredientsList = '<ul class="ingredient-list col">'
 
 
         // à chaque tour de boucle, je rajoute le li avec le nom de mon ingrédient
@@ -20,8 +20,8 @@ function createRecipeCards(recipes) {
             }
 
             if (recipes[i].ingredients[y].unit !== undefined) {
-                ingredient += recipes[i].ingredients[y].unit
-            }
+                ingredient += recipes[i].ingredients[y].unit.replace("grammes", "g")
+            } 
                                     
             ingredient += '</li>' // <ul><li>tomate</li>
 
@@ -34,11 +34,19 @@ function createRecipeCards(recipes) {
         // là, t'injectes tes éléments de recette (nom, temps, description, ingrédients) dedans
         contentHtml += `
             <div class="recipe-card">
-                <h2 class="recipe-name">
-                ${recipes[i].name}<span class="recipe-time"><i class="far fa-clock"></i>${recipes[i].time} min</span>
-                </h2>
-                ${ingredientsList}
-                <p class="recipe-description">${recipes[i].description}</p>
+                <div class="recipe-img">
+                    <img src="" alt"">
+                </div>
+                <div class="recipe-wrapper">
+                    <div class="recipe-heading">
+                        <h2 class="recipe-name">${recipes[i].name}</h2>
+                        <p class="recipe-time"><i class="far fa-clock"></i>${recipes[i].time} min</p>
+                    </div>
+                    <div class="recipe-content">
+                        ${ingredientsList}
+                        <p class="recipe-description col">${recipes[i].description}</p>
+                    </div>
+                </div>
             </div>
         `
     }
@@ -54,7 +62,7 @@ fetch("assets/recipes.json")
         const recipes = data.recipes
         const recipeCardsHtml = createRecipeCards(recipes)
 
-        document.querySelector('main').innerHTML = recipeCardsHtml
+        document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
     })
     
     .catch((err) => console.log("===", err))
