@@ -30,21 +30,26 @@
         </ul>
         <nav>
           <ul class="search-navigation">
-            <ul class="nav-item nav-ingredients">
+            <li class="nav-item nav-ingredients">
               <label for="ingredients-search"></label>
-              <input type="search" class="search-item search-item-blue" id="ingredients-search" name="ingredients-search" placeholder="Ingredients"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></input></li>
-              <!-- Injection des suggestions en Javascript -->  
-            </ul>
-            <ul class="nav-item nav-appareils">
+              <input type="search" class="search-item search-item-blue" id="ingredients-search" name="ingredients-search" placeholder="Ingredients"></input>
+              <i class="fas fa-chevron-down ingredients-chevron-down"></i>
+              <i class="fas fa-chevron-up ingredients-chevron-up hidden"></i>
+              <ul class="ingredients-list">
+                <li>Lait de coco</li>
+              </ul>
+              <!-- Injection des suggestions en Javascript -->
+            </li>
+            <!-- <li class="nav-item nav-appareils">
               <label for="appareil-search"></label>
               <input type="search" class="search-item search-item-green" id="appareil-search" name="appareil-search" placeholder="Appareils"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></input></li>
-              <!-- Injection des suggestions en Javascript -->  
-            </ul>
-            <ul class="nav-item nav-Ustenciles">
+              
+            </li>
+            <li class="nav-item nav-Ustenciles">
               <label for="ustenciles-search"></label>
               <input type="search" class="search-item search-item-red" id="ustenciles-search" name="ustenciles-search" placeholder="Ustenciles"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-up"></i></input></li>
-              <!-- Injection des suggestions en Javascript -->  
-            </ul>
+              
+            </li> -->
           </ul>
         </nav>
       </header>

@@ -7,6 +7,10 @@ body {
     margin: 0;
 }
 
+.hidden {
+    display: none !important;
+}
+
 
 /* -----------------------------------Typography */
 
@@ -109,9 +113,6 @@ h1 {
     color: white;
     top: 25px;
     right: 20px;
-}
-.fa-chevron-up {
-    display: none;
 }
 
 

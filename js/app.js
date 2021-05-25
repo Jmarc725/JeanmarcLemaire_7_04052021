@@ -1,3 +1,11 @@
+const allIngredients = []
+
+
+function displayIngredients(ingredients) {
+    console.log("===")
+    console.log(ingredients)
+    console.log("===")
+}
 
 function createRecipeCards(recipes) {
     let contentHtml = ''
@@ -55,14 +63,51 @@ function createRecipeCards(recipes) {
 }
 
 
+function retrieveAllIngredientsFromRecipes(recipes) {    
+    for (let i = 0; i < recipes.length; i++) {
+        for (let y = 0; y < recipes[i].ingredients.length; y++) {
+
+            const ingredientName = recipes[i].ingredients[y].ingredient
+
+            // Ici je cherche les ingrédients qui ne sont pas présents dans mon tableau
+            if (allIngredients.indexOf(ingredientName) === -1) {
+                // Si l'ingrédient n'est pas présent, alors je le rajoute dans mon tableau
+                allIngredients.push(ingredientName)
+            }
+
+        }
+    }
+}
+
+
 fetch("assets/recipes.json")
     .then((res) => res.json())
     .then((data) => {
         
         const recipes = data.recipes
+
+        retrieveAllIngredientsFromRecipes(recipes)        
+
         const recipeCardsHtml = createRecipeCards(recipes)
 
         document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
     })
     
     .catch((err) => console.log("===", err))
+
+
+// Session avec Thomas 25/05/2021
+const $ingredientsChevronDown = document.querySelector('.ingredients-chevron-down')
+const $ingredientsChevronUp = document.querySelector('.ingredients-chevron-up')
+
+$ingredientsChevronDown.addEventListener('click', () => {
+    $ingredientsChevronDown.classList.toggle('hidden')
+    $ingredientsChevronUp.classList.toggle('hidden')
+
+    displayIngredients(allIngredients)
+})
+
+$ingredientsChevronUp.addEventListener('click', () => {
+    $ingredientsChevronDown.classList.toggle('hidden')
+    $ingredientsChevronUp.classList.toggle('hidden')
+})
