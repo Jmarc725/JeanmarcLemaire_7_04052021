@@ -1,25 +1,23 @@
+// ------------------------------------------ Variables ----------------------
+
 const allIngredients = []
-let ingredient;
-let firstTenIngredients;
-let $ingredientsList = document.querySelector('.ingredients-list')
+const $ingredientsList = document.querySelector('.ingredients-list')
+const $ingredientsChevronDown = document.querySelector('.ingredients-chevron-down')
+const $ingredientsChevronUp = document.querySelector('.ingredients-chevron-up')
+
 $ingredientsList.style.display = 'none'
 
+
+// -------------------------------------------- Functions ---------------------
+
 function displayIngredients(ingredients) {
-    // console.log("===")
-    // console.log()
-    // console.log("===")
-    ingredient = ""
-    firstTenIngredients = ingredients.slice(0, 30)
+    let ingredient = ""
+    let firstTenIngredients = ingredients.slice(0, 30)
     for(let i = 0; i < firstTenIngredients.length; i++){
         ingredient += `<li class="ingredients-list-item">${firstTenIngredients[i]}</li>`
     }
     document.querySelector('.ingredients-list').innerHTML = ingredient
     return firstTenIngredients
-}
-
-function maskIngredients(ingredients){
-    ingredients =  document.querySelector('.ingredients-list').innerHTML = ""
-    return ingredients
 }
 
 function createRecipeCards(recipes) {
@@ -47,7 +45,6 @@ function createRecipeCards(recipes) {
             } 
                                     
             ingredient += '</li>' // <ul><li>tomate</li>
-
             ingredientsList += ingredient
         }
 
@@ -73,10 +70,8 @@ function createRecipeCards(recipes) {
             </div>
         `
     }
-    
     return contentHtml
 }
-
 
 function retrieveAllIngredientsFromRecipes(recipes) {    
     for (let i = 0; i < recipes.length; i++) {
@@ -89,33 +84,30 @@ function retrieveAllIngredientsFromRecipes(recipes) {
                 // Si l'ingrédient n'est pas présent, alors je le rajoute dans mon tableau
                 allIngredients.push(ingredientName)
             }
-
         }
     }
 
 }
 
 
+// -------------------------------------------- API -------------------------
+
 fetch("assets/recipes.json")
     .then((res) => res.json())
     .then((data) => {
         
         const recipes = data.recipes
-
         retrieveAllIngredientsFromRecipes(recipes)        
-
         const recipeCardsHtml = createRecipeCards(recipes)
-
         document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
     })
     
     .catch((err) => console.log("===", err))
 
 
-// Session avec Thomas 25/05/2021
-const $ingredientsChevronDown = document.querySelector('.ingredients-chevron-down')
-const $ingredientsChevronUp = document.querySelector('.ingredients-chevron-up')
+// --------------------------------------------- AddEventListeners ---------------
 
+// Session avec Thomas 25/05/2021
 $ingredientsChevronDown.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
@@ -128,7 +120,4 @@ $ingredientsChevronUp.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
     $ingredientsList.style.display ='none'
-
-    maskIngredients(allIngredients)
-
 })
