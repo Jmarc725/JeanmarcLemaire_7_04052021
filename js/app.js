@@ -22,7 +22,9 @@ const $appliancesChevronUp = document.querySelector('.appliances-chevron-up')
 const $ustensilsChevronDown = document.querySelector('.ustensils-chevron-down')
 const $ustensilsChevronUp = document.querySelector('.ustensils-chevron-up')
 
-
+// Placeholders
+// const $placeholderIngredients = document.querySelector('#ingredients-search').getAttribute('placeholder')
+// console.log($placeholderIngredients)
 // -------------------------------------------- Functions ---------------------
 
 // Ingredients
@@ -186,7 +188,7 @@ $ingredientsChevronDown.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
     $ingredientsList.style.display = 'block'
-
+    
     displayIngredients(allIngredients)
 })
 
@@ -194,6 +196,7 @@ $ingredientsChevronUp.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
     $ingredientsList.style.display ='none'
+
 })
 
 // Appliances
