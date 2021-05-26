@@ -82,6 +82,9 @@ h1 {
 
 /* --------------------- Navigation --------- */
 
+input:focus {
+    outline: none
+}
 
 .search-navigation {
     display: flex;
@@ -117,14 +120,15 @@ h1 {
 
 /* --------------------- Navigation dropdown ------------------ */
 
+
 .nav-ingredients {
-    width: 600px;
-    height: 250px;
     background: #3282F7;
     border-radius: 5px;
-
 }
+
 .ingredients-list {
+    width: 600px;
+    height: 200px;
     column-count: 3;
     background: #3282F7;
     /* height: 200px; */

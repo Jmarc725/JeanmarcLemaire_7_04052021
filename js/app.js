@@ -1,6 +1,8 @@
 const allIngredients = []
 let ingredient;
 let firstTenIngredients;
+let $ingredientsList = document.querySelector('.ingredients-list')
+$ingredientsList.style.display = 'none'
 
 function displayIngredients(ingredients) {
     // console.log("===")
@@ -16,7 +18,7 @@ function displayIngredients(ingredients) {
 }
 
 function maskIngredients(ingredients){
-   ingredients =  document.querySelector('.ingredients-list').innerHTML = ""
+    ingredients =  document.querySelector('.ingredients-list').innerHTML = ""
     return ingredients
 }
 
@@ -117,6 +119,7 @@ const $ingredientsChevronUp = document.querySelector('.ingredients-chevron-up')
 $ingredientsChevronDown.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
+    $ingredientsList.style.display = 'block'
 
     displayIngredients(allIngredients)
 })
@@ -124,6 +127,7 @@ $ingredientsChevronDown.addEventListener('click', () => {
 $ingredientsChevronUp.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
+    $ingredientsList.style.display ='none'
 
     maskIngredients(allIngredients)
 
