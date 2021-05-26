@@ -1,28 +1,66 @@
 // ------------------------------------------ Variables ----------------------
 
+// Arrays
 const allIngredients = []
-const $ingredientsList = document.querySelector('.ingredients-list')
-const $appliancesList = document.querySelector('.appareils-list')
-const $ingredientsChevronDown = document.querySelector('.ingredients-chevron-down')
-const $ingredientsChevronUp = document.querySelector('.ingredients-chevron-up')
-const $appliancesChevronDown = document.querySelector('.appareils-chevron-down')
-const $appliancesChevronUp = document.querySelector('.appareils-chevron-up')
+const allAppliances = []
+const allUstensils = []
 
+// Lists
+const $ingredientsList = document.querySelector('.ingredients-list')
+const $appliancesList = document.querySelector('.appliances-list')
+const $ustensilsList = document.querySelector('.ustensils-list')
 
 $ingredientsList.style.display = 'none'
 $appliancesList.style.display = 'none'
+$ustensilsList.style.display = 'none'
+
+// Chevrons
+const $ingredientsChevronDown = document.querySelector('.ingredients-chevron-down')
+const $ingredientsChevronUp = document.querySelector('.ingredients-chevron-up')
+const $appliancesChevronDown = document.querySelector('.appliances-chevron-down')
+const $appliancesChevronUp = document.querySelector('.appliances-chevron-up')
+const $ustensilsChevronDown = document.querySelector('.ustensils-chevron-down')
+const $ustensilsChevronUp = document.querySelector('.ustensils-chevron-up')
 
 
 // -------------------------------------------- Functions ---------------------
 
+// Ingredients
 function displayIngredients(ingredients) {
     let ingredient = ""
-    let firstTenIngredients = ingredients.slice(0, 30)
-    for(let i = 0; i < firstTenIngredients.length; i++){
-        ingredient += `<li class="ingredients-list-item">${firstTenIngredients[i]}</li>`
+    let firstThirtyIngredients = ingredients.slice(0, 30)
+    for(let i = 0; i < firstThirtyIngredients.length; i++){
+        ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
     }
     document.querySelector('.ingredients-list').innerHTML = ingredient
-    return firstTenIngredients
+    return ingredient
+}
+
+// Appliances
+function displayAppliances(appliances) {
+    let appliance = ""
+    
+    for(let i = 0; i < appliances.length; i++){
+        appliance += `<li class="appliances-list-item">${appliances[i]}</li>`
+    }
+    
+    document.querySelector('.appliances-list').innerHTML = appliance
+    
+    return appliance
+}
+
+// Utencils
+function displayUtencils(ustensils) {
+    let ustensil = ""
+    let firstThirtyUstensils = ustensils.slice(0, 30)
+    
+    for(let i = 0; i < firstThirtyUstensils.length; i++){
+        ustensil += `<li class="ustensils-list-item">${firstThirtyUstensils[i]}</li>`
+    }
+   
+    document.querySelector('.ustensils-list').innerHTML = ustensil
+    
+    return ustensil
 }
 
 
@@ -92,9 +130,34 @@ function retrieveAllIngredientsFromRecipes(recipes) {
             }
         }
     }
-
 }
 
+function retrieveAllAppliancesFromRecipes(recipes){
+    for (let i = 0; i < recipes.length; i++){
+        const applianceName = recipes[i].appliance
+
+        if (allAppliances.indexOf(applianceName) === -1){
+            allAppliances.push(applianceName)
+        }
+    }
+}
+
+function retrieveAllUstensilsFromRecipes(recipes) {    
+    for (let i = 0; i < recipes.length; i++) {
+        for (let y = 0; y < recipes[i].ustensils.length; y++) {
+
+            const ustensilName = recipes[i].ustensils[y]
+
+            // Ici je cherche les ingrédients qui ne sont pas présents dans mon tableau
+            if (allUstensils.indexOf(ustensilName) === -1) {
+                // Si l'ingrédient n'est pas présent, alors je le rajoute dans mon tableau
+                allUstensils.push(ustensilName)
+            }
+        }
+    }
+}
+    
+        
 
 // -------------------------------------------- API -------------------------
 
@@ -103,7 +166,10 @@ fetch("assets/recipes.json")
     .then((data) => {
         
         const recipes = data.recipes
-        retrieveAllIngredientsFromRecipes(recipes)        
+        retrieveAllIngredientsFromRecipes(recipes)   
+        retrieveAllAppliancesFromRecipes(recipes)   
+        retrieveAllUstensilsFromRecipes(recipes)             
+     
         const recipeCardsHtml = createRecipeCards(recipes)
         document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
     })
@@ -114,6 +180,8 @@ fetch("assets/recipes.json")
 // --------------------------------------------- AddEventListeners ---------------
 
 // Session avec Thomas 25/05/2021
+
+// Ingredients
 $ingredientsChevronDown.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
@@ -128,16 +196,33 @@ $ingredientsChevronUp.addEventListener('click', () => {
     $ingredientsList.style.display ='none'
 })
 
+// Appliances
 $appliancesChevronDown.addEventListener('click', () => {
     $appliancesChevronDown.classList.toggle('hidden')
     $appliancesChevronUp.classList.toggle('hidden')
-    $appliancesList.style.display ='block'
+    $appliancesList.style.display = 'block'
 
+    displayAppliances(allAppliances)
 })
 
 $appliancesChevronUp.addEventListener('click', () => {
     $appliancesChevronDown.classList.toggle('hidden')
     $appliancesChevronUp.classList.toggle('hidden')
     $appliancesList.style.display ='none'
+})
+
+// Utencils
+$ustensilsChevronDown.addEventListener('click', () => {
+    $ustensilsChevronDown.classList.toggle('hidden')
+    $ustensilsChevronUp.classList.toggle('hidden')
+    $ustensilsList.style.display = 'block'
+
+    displayUtencils(allUstensils)
+})
+
+$ustensilsChevronUp.addEventListener('click', () => {
+    $ustensilsChevronDown.classList.toggle('hidden')
+    $ustensilsChevronUp.classList.toggle('hidden')
+    $ustensilsList.style.display ='none'
 })
 

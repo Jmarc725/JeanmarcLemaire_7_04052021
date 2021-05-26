@@ -71,33 +71,13 @@ h1 {
     margin-bottom: 10px;
 }
 
-.search-item {
-    width: 250px;
-}
-
-.search-item::placeholder {
-    color: white;
-}
-
-
-/* --------------------- Navigation --------- */
-
 input:focus {
     outline: none
 }
-
-.search-navigation {
-    display: flex;
-    padding-left: 5px;
-    margin-bottom: 40px;
-}
-
-.nav-item {
-    list-style-type: none;
-    padding-left: 0;
-    margin-right: 20px;
-    position: relative;
-}
+/* 
+.search-item {
+    width: 250px;
+} */
 
 .search-item-blue {
     background: #3282F7;
@@ -111,6 +91,10 @@ input:focus {
     background: #ED6454;
 }
 
+.search-item::placeholder {
+    color: white;
+}
+
 .fa-chevron-down, .fa-chevron-up {
     position: absolute;
     color: white;
@@ -118,43 +102,67 @@ input:focus {
     right: 20px;
 }
 
-/* --------------------- Navigation dropdown ------------------ */
 
+/* --------------------- Navigation --------- */
+
+.search-navigation {
+    padding-left: 5px;
+    margin-bottom: 40px;
+}
+
+.nav-item {
+    display: inline-block;
+    list-style-type: none;
+    padding-left: 0;
+    margin-right: 20px;
+    position: relative;
+}
+
+.nav-ingredients, .nav-appliances, .nav-ustensils {
+    border-radius: 5px;
+}
 
 .nav-ingredients {
     background: #3282F7;
-    border-radius: 5px;
 }
-
-.nav-appareils {
+.nav-appliances {
     background: #68D9A4;
-    border-radius: 5px;
 }
 
-.ingredients-list, .appareils-list {
-    width: 600px;
-    height: 200px;
-    column-count: 3;
-    /* height: 200px; */
+.nav-ustensils {
+    background: #ED6454;
+}
+
+.ingredients-list, .appliances-list, .ustensils-list {
     color: white;
     padding-bottom: 20px;
     margin-top: -8px;
-    border-radius: 5px;
-
+    border-radius: 0 0 5px 5px;
 }
 
 .ingredients-list {
+    column-count: 3;
     background: #3282F7;
 }
 
-.appareils-list {
+.appliances-list {
+    width: 400px;
+    column-count: 2;
     background: #68D9A4;
-
+    padding-top: 10px;
 }
 
-.ingredients-list-item {
+.ustensils-list {
+    width: 600px;
+    column-count: 3;
+    background: #ED6454;
+    padding-top: 10px;;
+}
+
+.ingredients-list-item, .appliances-list-item, .ustensils-list-item {
     list-style-type: none;
 }
+
 /* --------------------- Layout ------------- */
 
 
