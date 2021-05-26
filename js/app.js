@@ -23,8 +23,11 @@ const $ustensilsChevronDown = document.querySelector('.ustensils-chevron-down')
 const $ustensilsChevronUp = document.querySelector('.ustensils-chevron-up')
 
 // Placeholders
-// const $placeholderIngredients = document.querySelector('#ingredients-search').getAttribute('placeholder')
+const $placeholderIngredients = document.querySelector('.search-item-blue')
+// $placeholderIngredients.getAttribute('placeholder')
 // console.log($placeholderIngredients)
+const $placeholderAppliances = document.querySelector('.search-item-green')
+const $placeholderUstensils = document.querySelector('.search-item-red')
 // -------------------------------------------- Functions ---------------------
 
 // Ingredients
@@ -188,7 +191,8 @@ $ingredientsChevronDown.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
     $ingredientsList.style.display = 'block'
-    
+    $placeholderIngredients.value =""
+
     displayIngredients(allIngredients)
 })
 
@@ -196,6 +200,7 @@ $ingredientsChevronUp.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
     $ingredientsList.style.display ='none'
+    $placeholderIngredients.value ="Ingrédients"
 
 })
 
@@ -204,6 +209,8 @@ $appliancesChevronDown.addEventListener('click', () => {
     $appliancesChevronDown.classList.toggle('hidden')
     $appliancesChevronUp.classList.toggle('hidden')
     $appliancesList.style.display = 'block'
+    $placeholderAppliances.value =""
+
 
     displayAppliances(allAppliances)
 })
@@ -212,6 +219,8 @@ $appliancesChevronUp.addEventListener('click', () => {
     $appliancesChevronDown.classList.toggle('hidden')
     $appliancesChevronUp.classList.toggle('hidden')
     $appliancesList.style.display ='none'
+    $placeholderAppliances.value ="Appareils"
+
 })
 
 // Utencils
@@ -219,6 +228,8 @@ $ustensilsChevronDown.addEventListener('click', () => {
     $ustensilsChevronDown.classList.toggle('hidden')
     $ustensilsChevronUp.classList.toggle('hidden')
     $ustensilsList.style.display = 'block'
+    $placeholderUstensils.value =""
+
 
     displayUtencils(allUstensils)
 })
@@ -227,5 +238,7 @@ $ustensilsChevronUp.addEventListener('click', () => {
     $ustensilsChevronDown.classList.toggle('hidden')
     $ustensilsChevronUp.classList.toggle('hidden')
     $ustensilsList.style.display ='none'
+    $placeholderUstensils.value ="Ustenciles"
+
 })
 

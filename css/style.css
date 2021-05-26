@@ -33,7 +33,7 @@ h1 {
     font-weight: 700;
 }
 
-.recipe-name, .recipe-time, .input-search::placeholder, .search-item::placeholder {
+.recipe-name, .recipe-time, .input-search::placeholder, .search-item::placeholder, input {
     font-size: 18px;
 }
 
@@ -66,13 +66,22 @@ h1 {
 }
 
 .input-search {
+    color: black;
     width: 100%;
     background: #E7E7E7;
     margin-bottom: 10px;
 }
 
+input {
+    color: white;
+}
+
 input:focus {
     outline: none
+}
+
+.search-item {
+    width: 260px;
 }
 
 .search-item-blue {
