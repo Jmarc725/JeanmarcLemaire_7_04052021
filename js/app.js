@@ -2,10 +2,15 @@
 
 const allIngredients = []
 const $ingredientsList = document.querySelector('.ingredients-list')
+const $appliancesList = document.querySelector('.appareils-list')
 const $ingredientsChevronDown = document.querySelector('.ingredients-chevron-down')
 const $ingredientsChevronUp = document.querySelector('.ingredients-chevron-up')
+const $appliancesChevronDown = document.querySelector('.appareils-chevron-down')
+const $appliancesChevronUp = document.querySelector('.appareils-chevron-up')
+
 
 $ingredientsList.style.display = 'none'
+$appliancesList.style.display = 'none'
 
 
 // -------------------------------------------- Functions ---------------------
@@ -19,6 +24,7 @@ function displayIngredients(ingredients) {
     document.querySelector('.ingredients-list').innerHTML = ingredient
     return firstTenIngredients
 }
+
 
 function createRecipeCards(recipes) {
     let contentHtml = ''
@@ -121,3 +127,17 @@ $ingredientsChevronUp.addEventListener('click', () => {
     $ingredientsChevronUp.classList.toggle('hidden')
     $ingredientsList.style.display ='none'
 })
+
+$appliancesChevronDown.addEventListener('click', () => {
+    $appliancesChevronDown.classList.toggle('hidden')
+    $appliancesChevronUp.classList.toggle('hidden')
+    $appliancesList.style.display ='block'
+
+})
+
+$appliancesChevronUp.addEventListener('click', () => {
+    $appliancesChevronDown.classList.toggle('hidden')
+    $appliancesChevronUp.classList.toggle('hidden')
+    $appliancesList.style.display ='none'
+})
+

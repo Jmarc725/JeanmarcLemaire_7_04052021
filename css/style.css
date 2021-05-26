@@ -126,16 +126,29 @@ input:focus {
     border-radius: 5px;
 }
 
-.ingredients-list {
+.nav-appareils {
+    background: #68D9A4;
+    border-radius: 5px;
+}
+
+.ingredients-list, .appareils-list {
     width: 600px;
     height: 200px;
     column-count: 3;
-    background: #3282F7;
     /* height: 200px; */
     color: white;
     padding-bottom: 20px;
     margin-top: -8px;
     border-radius: 5px;
+
+}
+
+.ingredients-list {
+    background: #3282F7;
+}
+
+.appareils-list {
+    background: #68D9A4;
 
 }
 
