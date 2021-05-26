@@ -1,17 +1,23 @@
 const allIngredients = []
-
+let ingredient;
+let firstTenIngredients;
 
 function displayIngredients(ingredients) {
     // console.log("===")
     // console.log()
     // console.log("===")
-    let ingredient = ""
-    let firstTenIngredients = ingredients.slice(0, 30)
+    ingredient = ""
+    firstTenIngredients = ingredients.slice(0, 30)
     for(let i = 0; i < firstTenIngredients.length; i++){
-        ingredient += `<li>${firstTenIngredients[i]}</li>`
+        ingredient += `<li class="ingredients-list-item">${firstTenIngredients[i]}</li>`
     }
     document.querySelector('.ingredients-list').innerHTML = ingredient
     return firstTenIngredients
+}
+
+function maskIngredients(ingredients){
+   ingredients =  document.querySelector('.ingredients-list').innerHTML = ""
+    return ingredients
 }
 
 function createRecipeCards(recipes) {
@@ -112,10 +118,13 @@ $ingredientsChevronDown.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
 
-    console.log(displayIngredients(allIngredients))
+    displayIngredients(allIngredients)
 })
 
 $ingredientsChevronUp.addEventListener('click', () => {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
+
+    maskIngredients(allIngredients)
+
 })
