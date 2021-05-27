@@ -24,10 +24,15 @@ const $ustensilsChevronUp = document.querySelector('.ustensils-chevron-up')
 
 // Placeholders
 const $placeholderIngredients = document.querySelector('input.search-item-blue')
-// $placeholderIngredients.getAttribute('placeholder')
-// console.log($placeholderIngredients)
 const $placeholderAppliances = document.querySelector('.search-item-green')
 const $placeholderUstensils = document.querySelector('.search-item-red')
+
+// Fonctions dans variables
+const displayIngredient = displayIngredients(allIngredients)
+const displayAppliance = displayAppliances(allAppliances)
+const displayUstensil = displayUstensils(allUstensils)
+
+
 // -------------------------------------------- Functions ---------------------
 
 // Ingredients
@@ -40,6 +45,8 @@ function displayIngredients(ingredients) {
     document.querySelector('.ingredients-list').innerHTML = ingredient
     return ingredient
 }
+
+
 
 // Appliances
 function displayAppliances(appliances) {
@@ -55,7 +62,7 @@ function displayAppliances(appliances) {
 }
 
 // Utencils
-function displayUtencils(ustensils) {
+function displayUstensils(ustensils) {
     let ustensil = ""
     let firstThirtyUstensils = ustensils.slice(0, 30)
     
@@ -177,6 +184,10 @@ fetch("assets/recipes.json")
      
         const recipeCardsHtml = createRecipeCards(recipes)
         document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
+
+        const displayIngredient = displayIngredients(allIngredients)
+        const displayAppliance = displayAppliances(allAppliances)
+        const displayUstensil = displayUstensils(allUstensils)
     })
     
     .catch((err) => console.log("===", err))
@@ -187,14 +198,15 @@ fetch("assets/recipes.json")
 // Session avec Thomas 25/05/2021
 
 
-function chevronDown(down, up, list, placeholder){
+function chevronDown(down, up, list, placeholder, variable){
     down.addEventListener('click', () => {
         down.classList.toggle('hidden')
         up.classList.toggle('hidden')
         list.style.display = 'block'
         placeholder.value = ""
         placeholder.focus()
-        displayIngredients(allIngredients)
+        variable
+        // displayIngredients(allIngredients)
 
     })
 }
@@ -208,8 +220,15 @@ function chevronUp(down, up, list, placeholder){
     })
 }
 
-chevronDown($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients)
+chevronDown($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients, displayIngredient)
 chevronUp($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients)
+
+chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances, displayAppliance)
+chevronUp($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
+
+chevronDown($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils, displayUstensil)
+chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils)
+
 // chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
 // chevronUp($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
 
@@ -240,7 +259,7 @@ chevronUp($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $pla
 //     $placeholderAppliances.value =""
 //     $placeholderAppliances.focus()
 
-//     displayAppliances(allAppliances)
+    // displayAppliances(allAppliances)
 // })
 
 // $appliancesChevronUp.addEventListener('click', () => {
@@ -252,22 +271,22 @@ chevronUp($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $pla
 // })
 
 // Utencils
-$ustensilsChevronDown.addEventListener('click', () => {
-    $ustensilsChevronDown.classList.toggle('hidden')
-    $ustensilsChevronUp.classList.toggle('hidden')
-    $ustensilsList.style.display = 'block'
-    $placeholderUstensils.value =""
-    $placeholderUstensils.focus()
+// $ustensilsChevronDown.addEventListener('click', () => {
+//     $ustensilsChevronDown.classList.toggle('hidden')
+//     $ustensilsChevronUp.classList.toggle('hidden')
+//     $ustensilsList.style.display = 'block'
+//     $placeholderUstensils.value =""
+//     $placeholderUstensils.focus()
 
-    displayUtencils(allUstensils)
-})
+//     displayUtencils(allUstensils)
+// })
 
-$ustensilsChevronUp.addEventListener('click', () => {
-    $ustensilsChevronDown.classList.toggle('hidden')
-    $ustensilsChevronUp.classList.toggle('hidden')
-    $ustensilsList.style.display ='none'
-    $placeholderUstensils.value ="Ustenciles"
+// $ustensilsChevronUp.addEventListener('click', () => {
+//     $ustensilsChevronDown.classList.toggle('hidden')
+//     $ustensilsChevronUp.classList.toggle('hidden')
+//     $ustensilsList.style.display ='none'
+//     $placeholderUstensils.value ="Ustenciles"
 
-})
+// })
 
-console.log($placeholderIngredients.getAttribute('value'))
+// console.log($placeholderIngredients.getAttribute('value'))
