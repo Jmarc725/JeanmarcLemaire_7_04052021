@@ -28,9 +28,9 @@ const $placeholderAppliances = document.querySelector('.search-item-green')
 const $placeholderUstensils = document.querySelector('.search-item-red')
 
 // Fonctions dans variables
-const displayIngredient = displayIngredients(allIngredients)
-const displayAppliance = displayAppliances(allAppliances)
-const displayUstensil = displayUstensils(allUstensils)
+// const displayIngredient = displayIngredients(allIngredients)
+// const displayAppliance = displayAppliances(allAppliances)
+// const displayUstensil = displayUstensils(allUstensils)
 
 
 // -------------------------------------------- Functions ---------------------
@@ -185,9 +185,12 @@ fetch("assets/recipes.json")
         const recipeCardsHtml = createRecipeCards(recipes)
         document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
 
-        const displayIngredient = displayIngredients(allIngredients)
-        const displayAppliance = displayAppliances(allAppliances)
-        const displayUstensil = displayUstensils(allUstensils)
+        // const displayIngredient = displayIngredients(allIngredients)
+        // const displayAppliance = displayAppliances(allAppliances)
+        // const displayUstensil = displayUstensils(allUstensils)
+        displayIngredients(allIngredients)
+        displayAppliances(allAppliances)
+        displayUstensils(allUstensils)
     })
     
     .catch((err) => console.log("===", err))
@@ -220,13 +223,13 @@ function chevronUp(down, up, list, placeholder){
     })
 }
 
-chevronDown($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients, displayIngredient)
+chevronDown($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients, displayIngredients(allIngredients))
 chevronUp($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients)
 
-chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances, displayAppliance)
+chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances, displayAppliances(allAppliances))
 chevronUp($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
 
-chevronDown($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils, displayUstensil)
+chevronDown($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils, displayUstensils(allUstensils))
 chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils)
 
 // chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
