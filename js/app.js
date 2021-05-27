@@ -192,6 +192,7 @@ $ingredientsChevronDown.addEventListener('click', () => {
     $ingredientsChevronUp.classList.toggle('hidden')
     $ingredientsList.style.display = 'block'
     $placeholderIngredients.value =""
+    $placeholderIngredients.focus()
 
     displayIngredients(allIngredients)
 })
@@ -210,6 +211,7 @@ $appliancesChevronDown.addEventListener('click', () => {
     $appliancesChevronUp.classList.toggle('hidden')
     $appliancesList.style.display = 'block'
     $placeholderAppliances.value =""
+    $placeholderAppliances.focus()
 
 
     displayAppliances(allAppliances)
@@ -229,6 +231,7 @@ $ustensilsChevronDown.addEventListener('click', () => {
     $ustensilsChevronUp.classList.toggle('hidden')
     $ustensilsList.style.display = 'block'
     $placeholderUstensils.value =""
+    $placeholderUstensils.focus()
 
 
     displayUtencils(allUstensils)
