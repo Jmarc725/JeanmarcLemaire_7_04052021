@@ -173,26 +173,8 @@ function retrieveAllUstensilsFromRecipes(recipes) {
 
 // -------------------------------------------- API -------------------------
 
-fetch("assets/recipes.json")
+const retrieveRecipesData = () => fetch("assets/recipes.json")
     .then((res) => res.json())
-    .then((data) => {
-        
-        const recipes = data.recipes
-        retrieveAllIngredientsFromRecipes(recipes)   
-        retrieveAllAppliancesFromRecipes(recipes)   
-        retrieveAllUstensilsFromRecipes(recipes)             
-     
-        const recipeCardsHtml = createRecipeCards(recipes)
-        document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
-
-        // const displayIngredient = displayIngredients(allIngredients)
-        // const displayAppliance = displayAppliances(allAppliances)
-        // const displayUstensil = displayUstensils(allUstensils)
-        displayIngredients(allIngredients)
-        displayAppliances(allAppliances)
-        displayUstensils(allUstensils)
-    })
-    
     .catch((err) => console.log("===", err))
 
 
@@ -214,23 +196,99 @@ function chevronDown(down, up, list, placeholder, variable){
     })
 }
 
-function chevronUp(down, up, list, placeholder){
-    up.addEventListener('click', () => {
-        down.classList.toggle('hidden')
-        up.classList.toggle('hidden')
-        list.style.display = 'none'
-        placeholder.value = placeholder.getAttribute('value')
+// function chevronUp(down, up, list, placeholder){
+//     up.addEventListener('click', () => {
+        // down.classList.toggle('hidden')
+        // up.classList.toggle('hidden')
+        // list.style.display = 'none'
+//         placeholder.value = placeholder.getAttribute('value')
+//     })
+// }
+
+// chevronDown($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients, displayIngredients(allIngredients))
+// chevronUp($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients)
+
+// chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances, displayAppliances(allAppliances))
+// chevronUp($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
+
+// chevronDown($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils, displayUstensils(allUstensils))
+// chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils)
+
+
+const chevronsUp = [
+    {
+        type: "ingredients",
+        downNode: $ingredientsChevronDown,
+        upNode: $ingredientsChevronUp,
+        listNode: $ingredientsList
+    },
+    {
+        type: "ustensils",
+        downNode: $ustensilsChevronDown,
+        upNode: $ustensilsChevronUp,
+        listNode: $ustensilsList
+    },
+    {
+        type: "appliances",
+        downNode: $appliancesChevronDown,
+        upNode: $appliancesChevronUp,
+        listNode: $appliancesList
+    },
+]
+
+
+function handleChevronDown(type) {
+    const matcheChevronUp = chevronsUp.filter(chevron => chevron.type === type)[0]
+
+    matcheChevronUp['downNode'].classList.toggle('hidden')
+    matcheChevronUp['upNode'].classList.toggle('hidden')
+    matcheChevronUp['listNode'].style.display = 'block'
+
+    const unmatchedChevronUp = chevronsUp.filter(chevron => chevron.type !== type)
+    unmatchedChevronUp.forEach(chevron => {
+        // chevron['downNode'].classList.toggle('hidden')
+        // chevron['upNode'].classList.toggle('hidden')
+        chevron['listNode'].style.display = 'none'
     })
 }
 
-chevronDown($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients, displayIngredients(allIngredients))
-chevronUp($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients)
 
-chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances, displayAppliances(allAppliances))
-chevronUp($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
+$ingredientsChevronDown.addEventListener('click', () => {
+    handleChevronDown("ingredients")
+})
 
-chevronDown($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils, displayUstensils(allUstensils))
-chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils)
+
+$ustensilsChevronDown.addEventListener('click', () => {
+    handleChevronDown('ustensils')
+})
+
+$appliancesChevronDown.addEventListener('click', () => {
+    handleChevronDown('appliances')
+})
+
+
+
+
+const main = async () => {
+    const data = await retrieveRecipesData()
+
+    const recipes = data.recipes
+     
+    const recipeCardsHtml = createRecipeCards(recipes)
+    document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
+
+    retrieveAllIngredientsFromRecipes(recipes)   
+    displayIngredients(allIngredients)
+
+    retrieveAllAppliancesFromRecipes(recipes)   
+    displayAppliances(allAppliances)
+
+    retrieveAllUstensilsFromRecipes(recipes)
+    displayUstensils(allUstensils)
+}
+main()
+
+
 
 // chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
 // chevronUp($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
@@ -262,7 +320,7 @@ chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placehold
 //     $placeholderAppliances.value =""
 //     $placeholderAppliances.focus()
 
-    // displayAppliances(allAppliances)
+//     displayAppliances(allAppliances)
 // })
 
 // $appliancesChevronUp.addEventListener('click', () => {
