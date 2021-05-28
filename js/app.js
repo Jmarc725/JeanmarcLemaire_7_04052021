@@ -293,3 +293,12 @@ chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placehold
 // })
 
 // console.log($placeholderIngredients.getAttribute('value'))
+
+
+$ingredientsSearch = document.querySelector('#ingredients-search')
+
+console.log($ingredientsSearch)
+
+$ingredientsSearch.addEventListener('keypress', (e) => {
+    console.log(e.target.value)
+})
