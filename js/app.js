@@ -238,22 +238,32 @@ const chevronsUp = [
 
 
 function handleChevronDown(type) {
-    const matcheChevronUp = chevronsUp.filter(chevron => chevron.type === type)[0]
+    const matchedChevron = chevronsUp.filter(chevron => chevron.type === type)[0]
 
-    matcheChevronUp['downNode'].classList.toggle('hidden')
-    matcheChevronUp['upNode'].classList.toggle('hidden')
-    matcheChevronUp['listNode'].style.display = 'block'
+    matchedChevron['downNode'].classList.toggle('hidden')
+    matchedChevron['upNode'].classList.toggle('hidden')
+    matchedChevron['listNode'].style.display = 'block'
 
     const unmatchedChevronUp = chevronsUp.filter(chevron => chevron.type !== type)
     unmatchedChevronUp.forEach(chevron => {
-        // chevron['downNode'].classList.toggle('hidden')
-        // chevron['upNode'].classList.toggle('hidden')
         chevron['listNode'].style.display = 'none'
     })
 }
 
+function handleChevronUp(type) {
+    const matchedChevron = chevronsUp.filter(chevron => chevron.type === type)[0]
+
+    matchedChevron['downNode'].classList.toggle('hidden')
+    matchedChevron['upNode'].classList.toggle('hidden')
+    matchedChevron['listNode'].style.display = 'none'
+}
+
 
 $ingredientsChevronDown.addEventListener('click', () => {
+    handleChevronDown("ingredients")
+})
+
+$ingredientsChevronUp.addEventListener('click', () => {
     handleChevronDown("ingredients")
 })
 
@@ -262,9 +272,24 @@ $ustensilsChevronDown.addEventListener('click', () => {
     handleChevronDown('ustensils')
 })
 
+$ustensilsChevronUp.addEventListener('click', () => {
+    handleChevronDown('ustensils')
+})
+
+
 $appliancesChevronDown.addEventListener('click', () => {
     handleChevronDown('appliances')
 })
+
+$appliancesChevronUp.addEventListener('click', () => {
+    handleChevronDown('appliances')
+})
+
+
+
+
+
+
 
 
 
