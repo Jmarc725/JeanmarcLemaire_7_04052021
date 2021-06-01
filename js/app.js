@@ -247,6 +247,8 @@ function handleChevronDown(type) {
     const unmatchedChevronUp = chevronsUp.filter(chevron => chevron.type !== type)
     unmatchedChevronUp.forEach(chevron => {
         chevron['listNode'].style.display = 'none'
+
+
     })
 }
 
@@ -264,7 +266,7 @@ $ingredientsChevronDown.addEventListener('click', () => {
 })
 
 $ingredientsChevronUp.addEventListener('click', () => {
-    handleChevronDown("ingredients")
+    handleChevronUp("ingredients")
 })
 
 
@@ -273,7 +275,7 @@ $ustensilsChevronDown.addEventListener('click', () => {
 })
 
 $ustensilsChevronUp.addEventListener('click', () => {
-    handleChevronDown('ustensils')
+    handleChevronUp('ustensils')
 })
 
 
@@ -282,14 +284,16 @@ $appliancesChevronDown.addEventListener('click', () => {
 })
 
 $appliancesChevronUp.addEventListener('click', () => {
-    handleChevronDown('appliances')
+    handleChevronUp('appliances')
 })
 
+// ----------------------------------------- Recherche
 
-
-
-
-
+function filterRecipeElements(array, search){
+    return array.filter(function(element){
+        return element.toLowerCase().indexOf(search.toLowerCase()) !== -1
+    })
+}
 
 
 
@@ -310,6 +314,9 @@ const main = async () => {
 
     retrieveAllUstensilsFromRecipes(recipes)
     displayUstensils(allUstensils)
+
+    console.log(filterRecipeElements(allIngredients, 'ai' ))
+
 }
 main()
 
