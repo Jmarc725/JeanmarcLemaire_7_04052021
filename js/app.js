@@ -180,7 +180,9 @@ fetch("assets/recipes.json")
         const recipes = data.recipes
         retrieveAllIngredientsFromRecipes(recipes)   
         retrieveAllAppliancesFromRecipes(recipes)   
-        retrieveAllUstensilsFromRecipes(recipes)             
+        retrieveAllUstensilsFromRecipes(recipes)  
+        // console.log(filterRecipeElements(allIngredients, "lait"))
+           
      
         const recipeCardsHtml = createRecipeCards(recipes)
         document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
@@ -294,15 +296,32 @@ chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placehold
 
 // console.log($placeholderIngredients.getAttribute('value'))
 
+function filterRecipeElements(array, search){
+    return array.filter(function(element){
+        return element.toLowerCase().indexOf(search.toLowerCase()) !== -1
+    })
+}
+
 
 $ingredientsSearch = document.querySelector('#ingredients-search')
+$appliancesSearch = document.querySelector('#appliances-search')
+$ustensilsSearch = document.querySelector('#ustensils-search')
 
-console.log($ingredientsSearch)
+// console.log($ingredientsSearch)
 
 $ingredientsSearch.addEventListener('keypress', (e) => {
-        console.log(e.target.value)
-
+    console.log(filterRecipeElements(allIngredients, "am"))
+    // console.log(e.target.value)
     })
 
 
-    
+$appliancesSearch.addEventListener('keypress', (e) => {
+    console.log(filterRecipeElements(allAppliances, "la"))
+    // console.log(e.target.value)
+    })    
+
+
+$ustensilsSearch.addEventListener('keypress', (e) => {
+    console.log(filterRecipeElements(allUstensils, "ou"))
+    // console.log(e.target.value)
+    })
