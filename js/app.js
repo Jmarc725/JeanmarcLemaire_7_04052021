@@ -193,6 +193,7 @@ fetch("assets/recipes.json")
         displayIngredients(allIngredients)
         displayAppliances(allAppliances)
         displayUstensils(allUstensils)
+
     })
     
     .catch((err) => console.log("===", err))
@@ -296,32 +297,42 @@ chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placehold
 
 // console.log($placeholderIngredients.getAttribute('value'))
 
-function filterRecipeElements(array, search){
-    return array.filter(function(element){
-        return element.toLowerCase().indexOf(search.toLowerCase()) !== -1
-    })
-}
-
 
 $ingredientsSearch = document.querySelector('#ingredients-search')
 $appliancesSearch = document.querySelector('#appliances-search')
 $ustensilsSearch = document.querySelector('#ustensils-search')
 
+
+function filterRecipeElements(array, request){
+    return array.filter(function(element){
+        return element.toLowerCase().indexOf(request.toLowerCase()) !== -1
+    })
+}
+
+// const filterText = (array, request) => {
+//     let findWord = array.filter(element => element.indexOf(request) !== -1)
+//         return findWord
+//     }
+
 // console.log($ingredientsSearch)
 
 $ingredientsSearch.addEventListener('keypress', (e) => {
-    console.log(filterRecipeElements(allIngredients, "am"))
+    let word = e.target.value
+    console.log(word)
+
+    if(word === filterRecipeElements(allIngredients, 'coco'))
+    console.log(word)
     // console.log(e.target.value)
-    })
+    // if(filterText(allIngredients, "ait") === $ingredientsSearch.value)
+    // console.log($ingredientsSearch)
+})
 
 
 $appliancesSearch.addEventListener('keypress', (e) => {
-    console.log(filterRecipeElements(allAppliances, "la"))
     // console.log(e.target.value)
     })    
 
 
 $ustensilsSearch.addEventListener('keypress', (e) => {
-    console.log(filterRecipeElements(allUstensils, "ou"))
     // console.log(e.target.value)
     })
