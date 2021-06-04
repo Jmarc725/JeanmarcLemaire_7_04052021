@@ -303,36 +303,57 @@ $appliancesSearch = document.querySelector('#appliances-search')
 $ustensilsSearch = document.querySelector('#ustensils-search')
 
 
-function filterRecipeElements(array, request){
-    return array.filter(function(element){
-        return element.toLowerCase().indexOf(request.toLowerCase()) !== -1
-    })
-}
+// function filterRecipeElements(array, request){
+//     return array.filter(function(element){
+//         return element.toLowerCase().indexOf(request.toLowerCase()) !== -1
+//     })
+// }
 
-// const filterText = (array, request) => {
-//     let findWord = array.filter(element => element.indexOf(request) !== -1)
-//         return findWord
+
+// function filterRecipeElements(array, request){
+//     let wordNotPresent = array.filter(word => word.indexOf(request) === -1)
+//     if(request.length < 3 || request === null) {
+//         return "Veuillez saisir au moins 3 caractères"
+//     } else if (wordNotPresent){
+//         "Cet article n'existe pas"
+//     } else {
+//         return array.filter(elt => elt.indexOf(request) !== -1)
+
 //     }
 
-// console.log($ingredientsSearch)
+//     }
 
-$ingredientsSearch.addEventListener('keypress', (e) => {
-    let word = e.target.value
-    console.log(word)
 
-    if(word === filterRecipeElements(allIngredients, 'coco'))
-    console.log(word)
-    // console.log(e.target.value)
-    // if(filterText(allIngredients, "ait") === $ingredientsSearch.value)
-    // console.log($ingredientsSearch)
+
+function filterRecipeElements(array, request){
+
+    if(request.length < 2 || request === null) {
+        return "Veuillez saisir au moins 3 caractères"
+    } else {
+        return array.filter(elt => elt.indexOf(request) !== -1)
+        }        
+    }
+
+        
+    
+    
+
+// function findWord (request){
+//    return request.match(/request/)
+// }
+
+
+$ingredientsSearch.addEventListener('keyup', (e) => {
+console.log(filterRecipeElements(allIngredients, e.target.value))
+// console.log(findWord(e.target.value))
 })
 
 
-$appliancesSearch.addEventListener('keypress', (e) => {
-    // console.log(e.target.value)
-    })    
+$appliancesSearch.addEventListener('keyup', (e) => {
+console.log(filterRecipeElements(allAppliances, e.target.value))
+})    
 
 
-$ustensilsSearch.addEventListener('keypress', (e) => {
-    // console.log(e.target.value)
-    })
+$ustensilsSearch.addEventListener('keyup', (e) => {
+console.log(filterRecipeElements(allUstensils, e.target.value))
+})
