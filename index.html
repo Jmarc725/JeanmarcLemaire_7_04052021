@@ -23,11 +23,11 @@
           <img src="" alt="">
         </div>
         <h1>Les petits plats</h1>
-        <ul class="main-search-recipe">
+        <div class="main-search-recipe">
           <label for="search"></label>
           <input type="search" class="input-search" name="search" id="search" placeholder="Rechercher un ingrédient, appareil, ustenciles ou une recette"></input>
-          <!-- Injection des suggestions en Javascript -->  
-        </ul>
+          <ul class="main-list"></ul>
+        </div>
         <nav>
           <ul class="search-navigation">
             <li class="nav-item nav-ingredients">
@@ -35,7 +35,7 @@
               <input type="search" class="search-item search-item-blue" id="ingredients-search" name="ingredients-search" placeholder="Ingrédients"></input>
               <i class="fas fa-chevron-down ingredients-chevron-down"></i>
               <i class="fas fa-chevron-up ingredients-chevron-up hidden"></i>
-              <ul class="ingredients-list"></ul>
+              <ul class="ingredients-list ingredients-list-request"></ul>
             </li>
             <li class="nav-item nav-appliances">
               <label for="appliances-search"></label>

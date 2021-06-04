@@ -1,12 +1,17 @@
-// ------------------------------------------ Variables ----------------------
+// ------------------------------------------ VARIABLES ----------------------
 
 // Arrays
 const allIngredients = []
 const allAppliances = []
 const allUstensils = []
+const allNames = []
+const allDescriptions = []
+// const allNamesAllDescription = allNames.concat(allDescriptions)
+
 
 // Lists
 const $ingredientsList = document.querySelector('.ingredients-list')
+const $ingredientsListRequest = document.querySelector('.ingredients-list-request')
 const $appliancesList = document.querySelector('.appliances-list')
 const $ustensilsList = document.querySelector('.ustensils-list')
 
@@ -27,55 +32,19 @@ const $placeholderIngredients = document.querySelector('input.search-item-blue')
 const $placeholderAppliances = document.querySelector('.search-item-green')
 const $placeholderUstensils = document.querySelector('.search-item-red')
 
-// Fonctions dans variables
-// const displayIngredient = displayIngredients(allIngredients)
-// const displayAppliance = displayAppliances(allAppliances)
-// const displayUstensil = displayUstensils(allUstensils)
+// Input
+const $mainSearchInput = document.querySelector('#search')
+const $mainSearchInputRequest = document.querySelector('.input-search')
 
-
-// -------------------------------------------- Functions ---------------------
-
-// Ingredients
-function displayIngredients(ingredients) {
-    let ingredient = ""
-    let firstThirtyIngredients = ingredients.slice(0, 30)
-    for(let i = 0; i < firstThirtyIngredients.length; i++){
-        ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
-    }
-    document.querySelector('.ingredients-list').innerHTML = ingredient
-    return ingredient
-}
+const $ingredientsSearch = document.querySelector('#ingredients-search')
+const $appliancesSearch = document.querySelector('#appliances-search')
+const $ustensilsSearch = document.querySelector('#ustensils-search')
 
 
 
-// Appliances
-function displayAppliances(appliances) {
-    let appliance = ""
-    
-    for(let i = 0; i < appliances.length; i++){
-        appliance += `<li class="appliances-list-item">${appliances[i]}</li>`
-    }
-    
-    document.querySelector('.appliances-list').innerHTML = appliance
-    
-    return appliance
-}
+// -------------------------------------------- FUNCTIONS ---------------------
 
-// Utencils
-function displayUstensils(ustensils) {
-    let ustensil = ""
-    let firstThirtyUstensils = ustensils.slice(0, 30)
-    
-    for(let i = 0; i < firstThirtyUstensils.length; i++){
-        ustensil += `<li class="ustensils-list-item">${firstThirtyUstensils[i]}</li>`
-    }
-   
-    document.querySelector('.ustensils-list').innerHTML = ustensil
-    
-    return ustensil
-}
-
-
+// Création des recettes pour le HTML
 function createRecipeCards(recipes) {
     let contentHtml = ''
 
@@ -129,6 +98,10 @@ function createRecipeCards(recipes) {
     return contentHtml
 }
 
+
+// ----------------- Récupération des données de recettes
+
+// Ingredients
 function retrieveAllIngredientsFromRecipes(recipes) {    
     for (let i = 0; i < recipes.length; i++) {
         for (let y = 0; y < recipes[i].ingredients.length; y++) {
@@ -144,6 +117,7 @@ function retrieveAllIngredientsFromRecipes(recipes) {
     }
 }
 
+// Appliances
 function retrieveAllAppliancesFromRecipes(recipes){
     for (let i = 0; i < recipes.length; i++){
         const applianceName = recipes[i].appliance
@@ -154,6 +128,7 @@ function retrieveAllAppliancesFromRecipes(recipes){
     }
 }
 
+// Ustensils
 function retrieveAllUstensilsFromRecipes(recipes) {    
     for (let i = 0; i < recipes.length; i++) {
         for (let y = 0; y < recipes[i].ustensils.length; y++) {
@@ -168,41 +143,78 @@ function retrieveAllUstensilsFromRecipes(recipes) {
         }
     }
 }
-    
+
+// Names
+function retrieveAllNamesRecipes(recipes){
+    for (let i = 0; i < recipes.length; i++){
+        let recipeNames = recipes[i].name
+        allNames.push(recipeNames)
+    }
+}
+
+// Description
+function retrieveAllDescriptionsRecipes(recipes){
+    for (let i = 0; i < recipes.length; i++){
+         let recipeDescriptions = recipes[i].description
         
+         allDescriptions.push(recipeDescriptions)
+         }
+}
 
-// -------------------------------------------- API -------------------------
 
-fetch("assets/recipes.json")
-    .then((res) => res.json())
-    .then((data) => {
-        
-        const recipes = data.recipes
-        retrieveAllIngredientsFromRecipes(recipes)   
-        retrieveAllAppliancesFromRecipes(recipes)   
-        retrieveAllUstensilsFromRecipes(recipes)  
-        // console.log(filterRecipeElements(allIngredients, "lait"))
-           
-     
-        const recipeCardsHtml = createRecipeCards(recipes)
-        document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
+// ------------------- Affichage des recettes après recherche
 
-        // const displayIngredient = displayIngredients(allIngredients)
-        // const displayAppliance = displayAppliances(allAppliances)
-        // const displayUstensil = displayUstensils(allUstensils)
-        displayIngredients(allIngredients)
-        displayAppliances(allAppliances)
-        displayUstensils(allUstensils)
+// Ingredients
+function displayIngredients(ingredients) {
+    let ingredient = ""
+    let firstThirtyIngredients = ingredients.slice(0, 30)
+    for(let i = 0; i < firstThirtyIngredients.length; i++){
+        ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
+    }
+    document.querySelector('.ingredients-list').innerHTML = ingredient
+    return ingredient
+}
 
-    })
+// Appliances
+function displayAppliances(appliances) {
+    let appliance = ""
     
-    .catch((err) => console.log("===", err))
+    for(let i = 0; i < appliances.length; i++){
+        appliance += `<li class="appliances-list-item">${appliances[i]}</li>`
+    }
+    
+    document.querySelector('.appliances-list').innerHTML = appliance
+    
+    return appliance
+}
+
+// Utencils
+function displayUstensils(ustensils) {
+    let ustensil = ""
+    let firstThirtyUstensils = ustensils.slice(0, 30)
+    
+    for(let i = 0; i < firstThirtyUstensils.length; i++){
+        ustensil += `<li class="ustensils-list-item">${firstThirtyUstensils[i]}</li>`
+    }
+   
+    document.querySelector('.ustensils-list').innerHTML = ustensil
+    
+    return ustensil
+}
 
 
-// --------------------------------------------- AddEventListeners ---------------
+// --------------------------------  Filter
 
-// Session avec Thomas 25/05/2021
+function filterRecipeElements(array, request){
+    if(request.length < 3 || request === null) {
+        return request
+    } else {
+        return array.filter(elt => elt.indexOf(request) !== -1)
+        }  
+    }       
 
+
+// ------------------------------ Chevrons
 
 function chevronDown(down, up, list, placeholder, variable){
     down.addEventListener('click', () => {
@@ -212,8 +224,6 @@ function chevronDown(down, up, list, placeholder, variable){
         placeholder.value = ""
         placeholder.focus()
         variable
-        // displayIngredients(allIngredients)
-
     })
 }
 
@@ -226,6 +236,39 @@ function chevronUp(down, up, list, placeholder){
     })
 }
 
+
+// -------------------------------------------- API -------------------------
+
+fetch("assets/recipes.json")
+    .then((res) => res.json())
+    .then((data) => {
+        
+        const recipes = data.recipes
+        retrieveAllIngredientsFromRecipes(recipes)   
+        retrieveAllAppliancesFromRecipes(recipes)   
+        retrieveAllUstensilsFromRecipes(recipes)  
+        retrieveAllNamesRecipes(recipes)
+        retrieveAllDescriptionsRecipes(recipes)     
+     
+        const recipeCardsHtml = createRecipeCards(recipes)
+        document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
+
+        displayIngredients(allIngredients)
+        displayAppliances(allAppliances)
+        displayUstensils(allUstensils)
+
+
+
+    })
+    
+    .catch((err) => console.log("===", err))
+
+
+// --------------------------------------------- AddEventListeners ---------------
+
+// Session avec Thomas 25/05/2021
+
+
 chevronDown($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients, displayIngredients(allIngredients))
 chevronUp($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients)
 
@@ -235,8 +278,34 @@ chevronUp($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeh
 chevronDown($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils, displayUstensils(allUstensils))
 chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils)
 
-// chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
-// chevronUp($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
+        
+    
+$ingredientsSearch.addEventListener('keyup', (e) => {
+// console.log(filterRecipeElements(allIngredients, e.target.value))
+$ingredientsListRequest.innerHTML = filterRecipeElements(allIngredients, e.target.value)
+$ingredientsListRequest.style.display = "block"
+})
+
+
+$appliancesSearch.addEventListener('keyup', (e) => {
+console.log(filterRecipeElements(allAppliances, e.target.value))
+})    
+
+
+$ustensilsSearch.addEventListener('keyup', (e) => {
+console.log(filterRecipeElements(allUstensils, e.target.value))
+})
+
+$mainSearchInput.addEventListener('keyup', (e) => {
+console.log(filterRecipeElements(allNames, e.target.value))
+// $mainSearchInputRequest.innerHTML = filterRecipeElements(allNames, e.target.value)
+})
+
+
+
+
+
+
 
 // Ingredients
 // $ingredientsChevronDown.addEventListener('click', () => {
@@ -298,62 +367,9 @@ chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placehold
 // console.log($placeholderIngredients.getAttribute('value'))
 
 
-$ingredientsSearch = document.querySelector('#ingredients-search')
-$appliancesSearch = document.querySelector('#appliances-search')
-$ustensilsSearch = document.querySelector('#ustensils-search')
-
-
 // function filterRecipeElements(array, request){
 //     return array.filter(function(element){
 //         return element.toLowerCase().indexOf(request.toLowerCase()) !== -1
 //     })
 // }
-
-
-// function filterRecipeElements(array, request){
-//     let wordNotPresent = array.filter(word => word.indexOf(request) === -1)
-//     if(request.length < 3 || request === null) {
-//         return "Veuillez saisir au moins 3 caractères"
-//     } else if (wordNotPresent){
-//         "Cet article n'existe pas"
-//     } else {
-//         return array.filter(elt => elt.indexOf(request) !== -1)
-
-//     }
-
-//     }
-
-
-
-function filterRecipeElements(array, request){
-
-    if(request.length < 2 || request === null) {
-        return "Veuillez saisir au moins 3 caractères"
-    } else {
-        return array.filter(elt => elt.indexOf(request) !== -1)
-        }        
-    }
-
-        
-    
-    
-
-// function findWord (request){
-//    return request.match(/request/)
-// }
-
-
-$ingredientsSearch.addEventListener('keyup', (e) => {
-console.log(filterRecipeElements(allIngredients, e.target.value))
-// console.log(findWord(e.target.value))
-})
-
-
-$appliancesSearch.addEventListener('keyup', (e) => {
-console.log(filterRecipeElements(allAppliances, e.target.value))
-})    
-
-
-$ustensilsSearch.addEventListener('keyup', (e) => {
-console.log(filterRecipeElements(allUstensils, e.target.value))
-})
+console.log(allDescriptions)

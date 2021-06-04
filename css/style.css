@@ -155,6 +155,13 @@ input:focus {
     background: #3282F7;
 }
 
+.ingredients-list-request {
+    column-count: 1;
+    background-color: #3282F7;
+    color: white;
+
+}
+
 .appliances-list {
     column-count: 2;
     background: #68D9A4;
