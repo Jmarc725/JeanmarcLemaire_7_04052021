@@ -107,6 +107,7 @@ function retrieveAllIngredientsFromRecipes(recipes) {
         for (let y = 0; y < recipes[i].ingredients.length; y++) {
 
             const ingredientName = recipes[i].ingredients[y].ingredient
+        
 
             // Ici je cherche les ingrédients qui ne sont pas présents dans mon tableau
             if (allIngredients.indexOf(ingredientName) === -1) {
@@ -133,10 +134,11 @@ function retrieveAllUstensilsFromRecipes(recipes) {
     for (let i = 0; i < recipes.length; i++) {
         for (let y = 0; y < recipes[i].ustensils.length; y++) {
 
-            const ustensilName = recipes[i].ustensils[y]
+            const ustensilName = recipes[i].ustensils[y][0].toUpperCase() + recipes[i].ustensils[y].substr(1)
 
             // Ici je cherche les ingrédients qui ne sont pas présents dans mon tableau
             if (allUstensils.indexOf(ustensilName) === -1) {
+
                 // Si l'ingrédient n'est pas présent, alors je le rajoute dans mon tableau
                 allUstensils.push(ustensilName)
             }
@@ -372,4 +374,3 @@ console.log(filterRecipeElements(allNames, e.target.value))
 //         return element.toLowerCase().indexOf(request.toLowerCase()) !== -1
 //     })
 // }
-console.log(allDescriptions)
