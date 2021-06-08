@@ -209,7 +209,7 @@ function filterRecipeElements(array, request){
     if(request.length < 3 || request === null) {
         return request
     } else {
-        return array.filter(elt => elt.indexOf(request) !== -1)
+        return array.filter(elt => elt.indexOf(request) !== -1).join(', ')
         }  
     }       
 
