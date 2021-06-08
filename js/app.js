@@ -209,7 +209,7 @@ function filterRecipeElements(array, request){
     if(request.length < 3 || request === null) {
         return request
     } else {
-        return array.filter(elt => elt.indexOf(request) !== -1).join(', ')
+        return array.filter(elt => elt.toLowerCase().indexOf(request) !== -1).join(', ')
         }  
     }       
 
@@ -280,23 +280,23 @@ chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placehold
 
         
     
-$ingredientsSearch.addEventListener('keyup', (e) => {
+$ingredientsSearch.addEventListener('input', (e) => {
 // console.log(filterRecipeElements(allIngredients, e.target.value))
 $ingredientsListRequest.innerHTML = filterRecipeElements(allIngredients, e.target.value)
 $ingredientsListRequest.style.display = "block"
 })
 
 
-$appliancesSearch.addEventListener('keyup', (e) => {
+$appliancesSearch.addEventListener('input', (e) => {
 console.log(filterRecipeElements(allAppliances, e.target.value))
 })    
 
 
-$ustensilsSearch.addEventListener('keyup', (e) => {
+$ustensilsSearch.addEventListener('input', (e) => {
 console.log(filterRecipeElements(allUstensils, e.target.value))
 })
 
-$mainSearchInput.addEventListener('keyup', (e) => {
+$mainSearchInput.addEventListener('input', (e) => {
 console.log(filterRecipeElements(allNames, e.target.value))
 // $mainSearchInputRequest.innerHTML = filterRecipeElements(allNames, e.target.value)
 })
