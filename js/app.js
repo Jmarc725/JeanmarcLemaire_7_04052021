@@ -5,19 +5,19 @@ const allIngredients = []
 const allAppliances = []
 const allUstensils = []
 const allNames = []
-const allDescriptions = []
-// const allNamesAllDescription = allNames.concat(allDescriptions)
-
 
 // Lists
 const $ingredientsList = document.querySelector('.ingredients-list')
 const $ingredientsListRequest = document.querySelector('.ingredients-list-request')
 const $appliancesList = document.querySelector('.appliances-list')
+const $appliancesListRequest = document.querySelector('.appliances-list-request')
 const $ustensilsList = document.querySelector('.ustensils-list')
+const $ustensilsListRequest = document.querySelector('.ustensils-list-request')
 
 $ingredientsList.style.display = 'none'
 $appliancesList.style.display = 'none'
 $ustensilsList.style.display = 'none'
+// $mainSearchInputRequest.style.display = 'none'
 
 // Chevrons
 const $ingredientsChevronDown = document.querySelector('.ingredients-chevron-down')
@@ -34,7 +34,7 @@ const $placeholderUstensils = document.querySelector('.search-item-red')
 
 // Input
 const $mainSearchInput = document.querySelector('#search')
-const $mainSearchInputRequest = document.querySelector('.input-search')
+const $mainSearchInputRequest = document.querySelector('.main-list')
 
 const $ingredientsSearch = document.querySelector('#ingredients-search')
 const $appliancesSearch = document.querySelector('#appliances-search')
@@ -99,7 +99,7 @@ function createRecipeCards(recipes) {
 }
 
 
-// ----------------- Récupération des données de recettes
+// ----------------- Récupération et affichage des données de recettes
 
 // Ingredients
 function retrieveAllIngredientsFromRecipes(recipes) {    
@@ -108,7 +108,6 @@ function retrieveAllIngredientsFromRecipes(recipes) {
 
             const ingredientName = recipes[i].ingredients[y].ingredient
         
-
             // Ici je cherche les ingrédients qui ne sont pas présents dans mon tableau
             if (allIngredients.indexOf(ingredientName) === -1) {
                 // Si l'ingrédient n'est pas présent, alors je le rajoute dans mon tableau
@@ -118,16 +117,40 @@ function retrieveAllIngredientsFromRecipes(recipes) {
     }
 }
 
+function displayIngredients(ingredients) {
+    let ingredient = ""
+    let firstThirtyIngredients = ingredients.slice(0, 30)
+    for(let i = 0; i < firstThirtyIngredients.length; i++){
+        ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
+    }
+    document.querySelector('.ingredients-list').innerHTML = ingredient
+    return ingredient
+}
+
+
 // Appliances
 function retrieveAllAppliancesFromRecipes(recipes){
     for (let i = 0; i < recipes.length; i++){
-        const applianceName = recipes[i].appliance
+        const applianceName = recipes[i].appliance.replace("casserolle", "casserole")
 
         if (allAppliances.indexOf(applianceName) === -1){
             allAppliances.push(applianceName)
         }
     }
 }
+
+function displayAppliances(appliances) {
+    let appliance = ""
+    
+    for(let i = 0; i < appliances.length; i++){
+        appliance += `<li class="appliances-list-item">${appliances[i]}</li>`
+    }
+    
+    document.querySelector('.appliances-list').innerHTML = appliance
+    
+    return appliance
+}
+
 
 // Ustensils
 function retrieveAllUstensilsFromRecipes(recipes) {    
@@ -146,51 +169,6 @@ function retrieveAllUstensilsFromRecipes(recipes) {
     }
 }
 
-// Names
-function retrieveAllNamesRecipes(recipes){
-    for (let i = 0; i < recipes.length; i++){
-        let recipeNames = recipes[i].name
-        allNames.push(recipeNames)
-    }
-}
-
-// Description
-function retrieveAllDescriptionsRecipes(recipes){
-    for (let i = 0; i < recipes.length; i++){
-         let recipeDescriptions = recipes[i].description
-        
-         allDescriptions.push(recipeDescriptions)
-         }
-}
-
-
-// ------------------- Affichage des recettes après recherche
-
-// Ingredients
-function displayIngredients(ingredients) {
-    let ingredient = ""
-    let firstThirtyIngredients = ingredients.slice(0, 30)
-    for(let i = 0; i < firstThirtyIngredients.length; i++){
-        ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
-    }
-    document.querySelector('.ingredients-list').innerHTML = ingredient
-    return ingredient
-}
-
-// Appliances
-function displayAppliances(appliances) {
-    let appliance = ""
-    
-    for(let i = 0; i < appliances.length; i++){
-        appliance += `<li class="appliances-list-item">${appliances[i]}</li>`
-    }
-    
-    document.querySelector('.appliances-list').innerHTML = appliance
-    
-    return appliance
-}
-
-// Utencils
 function displayUstensils(ustensils) {
     let ustensil = ""
     let firstThirtyUstensils = ustensils.slice(0, 30)
@@ -204,6 +182,25 @@ function displayUstensils(ustensils) {
     return ustensil
 }
 
+// Names
+function retrieveAllNamesRecipes(recipes){
+    for (let i = 0; i < recipes.length; i++){
+        const nameRecipe = recipes[i].name
+        // nameList += `<li class="name-list">${recipes[i].name}</li>`
+        allNames.push(nameRecipe)
+    }
+}
+
+// function displayNames(names){
+//     let name = ""
+    
+//     for ( let i = 0; names.length; i++){
+//         name += `<li class="main-list-item">${names[i]}</li>`
+//         }
+//         $mainSearchInputRequest.innerHTML = name
+//         return name
+//     } 
+        
 
 // --------------------------------  Filter
 
@@ -211,7 +208,7 @@ function filterRecipeElements(array, request){
     if(request.length < 3 || request === null) {
         return request
     } else {
-        return array.filter(elt => elt.toLowerCase().indexOf(request) !== -1).join(', ')
+        return array.filter(elt => elt.toLowerCase().indexOf(request) !== -1).join('<br> ')
         }  
     }       
 
@@ -250,7 +247,6 @@ fetch("assets/recipes.json")
         retrieveAllAppliancesFromRecipes(recipes)   
         retrieveAllUstensilsFromRecipes(recipes)  
         retrieveAllNamesRecipes(recipes)
-        retrieveAllDescriptionsRecipes(recipes)     
      
         const recipeCardsHtml = createRecipeCards(recipes)
         document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
@@ -258,7 +254,7 @@ fetch("assets/recipes.json")
         displayIngredients(allIngredients)
         displayAppliances(allAppliances)
         displayUstensils(allUstensils)
-
+        displayNames(allNames)
 
 
     })
@@ -283,24 +279,28 @@ chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placehold
         
     
 $ingredientsSearch.addEventListener('input', (e) => {
-// console.log(filterRecipeElements(allIngredients, e.target.value))
-$ingredientsListRequest.innerHTML = filterRecipeElements(allIngredients, e.target.value)
-$ingredientsListRequest.style.display = "block"
-})
+    // console.log(filterRecipeElements(allIngredients, e.target.value))
+    $ingredientsListRequest.innerHTML = filterRecipeElements(allIngredients, e.target.value)
+    $ingredientsListRequest.style.display = "block"
+    })
 
 
 $appliancesSearch.addEventListener('input', (e) => {
-console.log(filterRecipeElements(allAppliances, e.target.value))
-})    
+    $appliancesListRequest.innerHTML = filterRecipeElements(allAppliances, e.target.value)
+    $appliancesListRequest.style.display = "block"
+    // console.log(filterRecipeElements(allAppliances, e.target.value))
+    })    
 
 
 $ustensilsSearch.addEventListener('input', (e) => {
-console.log(filterRecipeElements(allUstensils, e.target.value))
+    $ustensilsListRequest.innerHTML = filterRecipeElements(allUstensils, e.target.value)
+    $ustensilsListRequest.style.display = "block"
+    // console.log(filterRecipeElements(allUstensils, e.target.value))
 })
 
 $mainSearchInput.addEventListener('input', (e) => {
-console.log(filterRecipeElements(allNames, e.target.value))
-// $mainSearchInputRequest.innerHTML = filterRecipeElements(allNames, e.target.value)
+    $mainSearchInputRequest.innerHTML = filterRecipeElements(allNames, e.target.value)
+    $mainSearchInputRequest.style.display = "block"
 })
 
 

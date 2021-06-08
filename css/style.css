@@ -56,11 +56,15 @@ h1 {
 
 .main-search-recipe {
     padding-left: 0;
+    /* height: auto; */
+    background: #E7E7E7;
+
 }
 
 .input-search, .search-item {
-    height: 65px;
-    padding-left: 40px;
+    padding: 20px 40px;
+    /* height: 65px; */
+    /* padding-left: 40px; */
     border-width: 0;
     border-radius: 5px;
 }
@@ -69,7 +73,6 @@ h1 {
     color: black;
     width: 100%;
     background: #E7E7E7;
-    margin-bottom: 10px;
 }
 
 input {
