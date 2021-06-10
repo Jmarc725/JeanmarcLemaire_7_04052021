@@ -189,18 +189,7 @@ function retrieveAllNamesRecipes(recipes){
         // nameList += `<li class="name-list">${recipes[i].name}</li>`
         allNames.push(nameRecipe)
     }
-}
-
-// function displayNames(names){
-//     let name = ""
-    
-//     for ( let i = 0; names.length; i++){
-//         name += `<li class="main-list-item">${names[i]}</li>`
-//         }
-//         $mainSearchInputRequest.innerHTML = name
-//         return name
-//     } 
-        
+}        
 
 // --------------------------------  Filter
 
@@ -302,11 +291,6 @@ $mainSearchInput.addEventListener('input', (e) => {
     $mainSearchInputRequest.innerHTML = filterRecipeElements(allNames, e.target.value)
     $mainSearchInputRequest.style.display = "block"
 })
-
-
-
-
-
 
 
 // Ingredients
