@@ -19,6 +19,7 @@ function chevronUp(down, up, list, placeholder){
 }
 
 
+
 function chrevonDownIngredients() {
     $ingredientsChevronDown.classList.toggle('hidden')
     $ingredientsChevronUp.classList.toggle('hidden')
@@ -30,3 +31,4 @@ function chrevonUpIngredients() {
     $ingredientsChevronUp.classList.toggle('hidden')
     $ingredientsList.style.display = 'none'
 }
+

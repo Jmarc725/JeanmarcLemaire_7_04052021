@@ -11,11 +11,12 @@ const $appliancesList = document.querySelector('.appliances-list')
 const $appliancesListRequest = document.querySelector('.appliances-list-request')
 const $ustensilsList = document.querySelector('.ustensils-list')
 const $ustensilsListRequest = document.querySelector('.ustensils-list-request')
+const $namesList = document.querySelector('.recipes-names-list')
 
 $ingredientsList.style.display = 'none'
 $appliancesList.style.display = 'none'
 $ustensilsList.style.display = 'none'
-// $mainSearchInputRequest.style.display = 'none'
+$namesList.style.display = 'none'
 
 // Chevrons
 const $ingredientsChevronDown = document.querySelector('.ingredients-chevron-down')
@@ -31,22 +32,12 @@ const $placeholderAppliances = document.querySelector('.search-item-green')
 const $placeholderUstensils = document.querySelector('.search-item-red')
 
 // Input
-const $mainSearchInput = document.querySelector('#search')
-const $mainSearchInputRequest = document.querySelector('.main-list')
-
+const $recipeNameSearch = document.querySelector('#search')
 const $ingredientsSearch = document.querySelector('#ingredients-search')
 const $appliancesSearch = document.querySelector('#appliances-search')
 const $ustensilsSearch = document.querySelector('#ustensils-search')
 
 
-// Names
-function retrieveAllNamesRecipes(recipes){
-    for (let i = 0; i < recipes.length; i++){
-        const nameRecipe = recipes[i].name
-        // nameList += `<li class="name-list">${recipes[i].name}</li>`
-        allNames.push(nameRecipe)
-    }
-}        
 
 // --------------------------------  Filter
 
@@ -84,3 +75,17 @@ $ingredientsSearch.addEventListener('input', (e) => {
     }
 })
 
+    
+$recipeNameSearch.addEventListener('input', (e) => {
+    const search = e.target.value
+    
+    const filteredName = filterRecipeElements(allNames, search)
+
+    displayAllNames(filteredName)
+    
+    if (search.length >= 3) {
+        $namesList.style.display ='block'
+    } else {
+        $namesList.style.display ='none'
+    }
+})

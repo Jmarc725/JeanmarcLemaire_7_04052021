@@ -33,7 +33,7 @@ h1 {
     font-weight: 700;
 }
 
-.recipe-name, .recipe-time, .input-search::placeholder, .search-item::placeholder, input {
+.recipe-name, .recipe-time, input[type="search"] {
     font-size: 18px;
 }
 
@@ -53,50 +53,42 @@ h1 {
 
 /*-------------------------- input search ---------- */
 
-
-.main-search-recipe {
-    padding-left: 0;
-    /* height: auto; */
-    background: #E7E7E7;
-
-}
-
-.input-search, .search-item {
+input {
     padding: 20px 40px;
-    /* height: 65px; */
-    /* padding-left: 40px; */
     border-width: 0;
     border-radius: 5px;
+    color: white;
 }
 
-.input-search {
+#search {
     color: black;
     width: 100%;
     background: #E7E7E7;
+
 }
 
-input {
-    color: white;
+.main-search-recipe {
+    margin-bottom: 20px;
+    background: #E7E7E7;
+    border-radius: 5px;
+
 }
 
 input:focus {
     outline: none
 }
 
+.recipes-names-list {
+    margin-top: 0;
+    padding-bottom: 20px;
+}
+
+.recipe-name-list {
+    list-style-type: none;
+}
+
 .search-item {
     width: 260px;
-}
-
-.search-item-blue {
-    background: #3282F7;
-}
-
-.search-item-green {
-    background: #68D9A4;
-}
-
-.search-item-red {
-    background: #ED6454;
 }
 
 .search-item::placeholder {
@@ -114,7 +106,6 @@ input:focus {
 /* --------------------- Navigation --------- */
 
 .search-navigation {
-    /* display: flex; */
     padding-left: 5px;
     margin-bottom: 40px;
 }
@@ -131,15 +122,19 @@ input:focus {
     border-radius: 5px;
 }
 
-.nav-ingredients {
+.nav-ingredients, .search-item-blue,
+.ingredients-list, .ingredients-list-request  {
     background: #3282F7;
 }
 
-.nav-appliances {
+
+.nav-appliances, .search-item-green,
+.appliances-list, .appliances-list-request {
     background: #68D9A4;
 }
 
-.nav-ustensils {
+.nav-ustensils, .search-item-red,
+.ustensils-list, .ustensils-list-request {
     background: #ED6454;
 }
 
@@ -153,26 +148,17 @@ input:focus {
     padding-bottom: 40px;
 }
 
-.ingredients-list {
+.ingredients-list, .ustensils-list {
     column-count: 3;
-    background: #3282F7;
-}
-
-.ingredients-list-request {
-    column-count: 1;
-    background-color: #3282F7;
-    color: white;
-
 }
 
 .appliances-list {
     column-count: 2;
-    background: #68D9A4;
 }
 
-.ustensils-list {
-    column-count: 3;
-    background: #ED6454;
+.ingredients-list-request {
+    column-count: 1;
+    color: white;
 }
 
 .ingredients-list-item, .appliances-list-item, .ustensils-list-item {

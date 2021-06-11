@@ -18,8 +18,29 @@ function displayIngredients(ingredients) {
     let ingredient = ""
     let firstThirtyIngredients = ingredients.slice(0, 30)
     for(let i = 0; i < firstThirtyIngredients.length; i++){
-        ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
+       ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
     }
     document.querySelector('.ingredients-list').innerHTML = ingredient
     return ingredient
 }
+
+
+// Names
+function retrieveAllNamesRecipes(recipes){
+    
+    for (let i = 0; i < recipes.length; i++){
+        let recipeName = recipes[i].name
+        allNames.push(recipeName)
+    }
+}        
+
+function displayAllNames(names){
+    let recipeName = ""
+    for (let i = 0; i < names.length; i++){
+        recipeName += `<li class="recipe-name-list">${names[i]}</li>`
+    }
+    $namesList.innerHTML = recipeName
+    console.log (recipeName)
+
+}
+
