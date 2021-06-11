@@ -68,14 +68,76 @@ $ingredientsSearch.addEventListener('input', (e) => {
 
     displayIngredients(filteredIngredients)
     
+    
     if (search.length >= 3) {
-        chrevonDownIngredients()
-    } else if (search.length < 3 && $ingredientsChevronUp.classList.contains('hidden')) {
-        chrevonUpIngredients()
+        $ingredientsList.style.display = "block"
+        $ingredientsChevronDown.classList.add('hidden')
+        $ingredientsChevronUp.classList.remove('hidden')
+
+        $ingredientsChevronDown.addEventListener('click', () => {
+            displayIngredients(allIngredients)
+        })
+    } else {
+        $ingredientsList.style.display = "none"
+        $ingredientsChevronDown.classList.remove('hidden')
+        $ingredientsChevronUp.classList.add('hidden')
+    }
+
+    // else if (search.length < 3 && $ingredientsChevronUp.classList.contains('hidden')) {
+    //     // chrevonUpIngredients()
+    //     $ingredientsList.style.display = 'none'
+    // }
+
+})
+
+ 
+$appliancesSearch.addEventListener('input', (e) => {
+    const search = e.target.value
+    
+    const filteredAppliances = filterRecipeElements(allAppliances, search)
+
+    displayAppliances(filteredAppliances)
+    
+    
+    if (search.length >= 3) {
+        $appliancesList.style.display = "block"
+        $appliancesChevronDown.classList.add('hidden')
+        $appliancesChevronUp.classList.remove('hidden')
+
+        $appliancesChevronDown.addEventListener('click', () => {
+            displayAppliances(allAppliances)
+        })
+    } else {
+        $appliancesList.style.display = "none"
+        $appliancesChevronDown.classList.remove('hidden')
+        $appliancesChevronUp.classList.add('hidden')
     }
 })
 
+ 
+$ustensilsSearch.addEventListener('input', (e) => {
+    const search = e.target.value
     
+    const filteredUstensils = filterRecipeElements(allUstensils, search)
+
+    displayUstensils(filteredUstensils)
+    
+    
+    if (search.length >= 3) {
+        $ustensilsList.style.display = "block"
+        $ustensilsChevronDown.classList.add('hidden')
+        $ustensilsChevronUp.classList.remove('hidden')
+
+        $ustensilsChevronDown.addEventListener('click', () => {
+            displayUstensils(allUstensils)
+        })
+    } else {
+        $ustensilsList.style.display = "none"
+        $ustensilsChevronDown.classList.remove('hidden')
+        $ustensilsChevronUp.classList.add('hidden')
+    }
+})
+
 $recipeNameSearch.addEventListener('input', (e) => {
     const search = e.target.value
     

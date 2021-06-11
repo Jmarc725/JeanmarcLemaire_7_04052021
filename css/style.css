@@ -64,14 +64,11 @@ input {
     color: black;
     width: 100%;
     background: #E7E7E7;
-
 }
 
 .main-search-recipe {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     background: #E7E7E7;
-    border-radius: 5px;
-
 }
 
 input:focus {
@@ -118,7 +115,8 @@ input:focus {
     position: relative;
 }
 
-.nav-ingredients, .nav-appliances, .nav-ustensils {
+.nav-ingredients, .nav-appliances, 
+.nav-ustensils, .main-search-recipe {
     border-radius: 5px;
 }
 
