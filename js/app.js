@@ -6,11 +6,8 @@ const allNames = []
 
 // Lists
 const $ingredientsList = document.querySelector('.ingredients-list')
-const $ingredientsListRequest = document.querySelector('.ingredients-list-request')
 const $appliancesList = document.querySelector('.appliances-list')
-const $appliancesListRequest = document.querySelector('.appliances-list-request')
 const $ustensilsList = document.querySelector('.ustensils-list')
-const $ustensilsListRequest = document.querySelector('.ustensils-list-request')
 const $namesList = document.querySelector('.recipes-names-list')
 
 $ingredientsList.style.display = 'none'
@@ -27,7 +24,7 @@ const $ustensilsChevronDown = document.querySelector('.ustensils-chevron-down')
 const $ustensilsChevronUp = document.querySelector('.ustensils-chevron-up')
 
 // Placeholders
-const $placeholderIngredients = document.querySelector('input.search-item-blue')
+const $placeholderIngredients = document.querySelector('.search-item-blue')
 const $placeholderAppliances = document.querySelector('.search-item-green')
 const $placeholderUstensils = document.querySelector('.search-item-red')
 
@@ -68,15 +65,19 @@ $ingredientsSearch.addEventListener('input', (e) => {
 
     displayIngredients(filteredIngredients)
     
-    
     if (search.length >= 3) {
+
         $ingredientsList.style.display = "block"
+        $ingredientsList.classList.add('ingredients-list-request')
         $ingredientsChevronDown.classList.add('hidden')
         $ingredientsChevronUp.classList.remove('hidden')
 
         $ingredientsChevronDown.addEventListener('click', () => {
             displayIngredients(allIngredients)
+            $ingredientsList.classList.remove('ingredients-list-request')
+
         })
+
     } else {
         $ingredientsList.style.display = "none"
         $ingredientsChevronDown.classList.remove('hidden')
@@ -101,11 +102,14 @@ $appliancesSearch.addEventListener('input', (e) => {
     
     if (search.length >= 3) {
         $appliancesList.style.display = "block"
+        $appliancesList.classList.add('appliances-list-request')
         $appliancesChevronDown.classList.add('hidden')
         $appliancesChevronUp.classList.remove('hidden')
 
         $appliancesChevronDown.addEventListener('click', () => {
             displayAppliances(allAppliances)
+            $appliancesList.classList.remove('appliances-list-request')
+
         })
     } else {
         $appliancesList.style.display = "none"
@@ -122,16 +126,21 @@ $ustensilsSearch.addEventListener('input', (e) => {
 
     displayUstensils(filteredUstensils)
     
+    const ustensilsInput = displayUstensils(filteredUstensils)
+
     
-    if (search.length >= 3) {
+    if (search.length >= 3 ){
         $ustensilsList.style.display = "block"
+        $ustensilsList.classList.add('ustensils-list-request')
         $ustensilsChevronDown.classList.add('hidden')
         $ustensilsChevronUp.classList.remove('hidden')
 
         $ustensilsChevronDown.addEventListener('click', () => {
             displayUstensils(allUstensils)
+            $ustensilsList.classList.remove('ustensils-list-request')
         })
-    } else {
+    
+     } else {
         $ustensilsList.style.display = "none"
         $ustensilsChevronDown.classList.remove('hidden')
         $ustensilsChevronUp.classList.add('hidden')

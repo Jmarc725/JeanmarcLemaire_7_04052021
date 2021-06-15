@@ -136,14 +136,14 @@ input:focus {
     background: #ED6454;
 }
 
-.ingredients-list, .appliances-list, .ustensils-list {
+.ingredients-list, .appliances-list, 
+.ustensils-list {
     color: white;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
     margin-top: -8px;
     border-radius: 0 0 5px 5px;
     padding-top: 10px;
     padding-right: 40px;
-    padding-bottom: 40px;
 }
 
 .ingredients-list, .ustensils-list {
@@ -154,14 +154,23 @@ input:focus {
     column-count: 2;
 }
 
-.ingredients-list-request {
+.ingredients-list-request, .appliances-list-request, 
+.ustensils-list-request {
     column-count: 1;
-    color: white;
+
 }
 
-.ingredients-list-item, .appliances-list-item, .ustensils-list-item {
+
+.ingredients-list-request-pb, .appliances-list-request-pb, 
+.ustensils-list-request-pb {
+    padding-bottom: 0rem;
+}
+
+.ingredients-list-item, .appliances-list-item, 
+.ustensils-list-item {
     list-style-type: none;
 }
+
 
 /* --------------------- Layout ------------- */
 
