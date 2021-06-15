@@ -68,8 +68,7 @@ $ingredientsSearch.addEventListener('input', (e) => {
 
     displayIngredients(filteredIngredients)
     
-    
-    if (search.length >= 3) {
+    if (search.length >= 3 && filteredIngredients.length) {
         $ingredientsList.style.display = "block"
         $ingredientsChevronDown.classList.add('hidden')
         $ingredientsChevronUp.classList.remove('hidden')
@@ -88,6 +87,12 @@ $ingredientsSearch.addEventListener('input', (e) => {
     //     $ingredientsList.style.display = 'none'
     // }
 
+})
+
+$ingredientsList.addEventListener('click', e => {
+    console.log("====")
+    console.log(e.target.textContent)
+    console.log("====")
 })
 
  
