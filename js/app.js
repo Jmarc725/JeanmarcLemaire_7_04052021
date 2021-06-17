@@ -34,7 +34,9 @@ const $ingredientsSearch = document.querySelector('#ingredients-search')
 const $appliancesSearch = document.querySelector('#appliances-search')
 const $ustensilsSearch = document.querySelector('#ustensils-search')
 
-
+// Navigation
+const $ingredientsNavigation = document.querySelector('.nav-ingredients')
+const $wrapperIngredients = document.querySelector('.wrapper-selected-ingredients')
 
 // --------------------------------  Filter
 
@@ -65,8 +67,7 @@ $ingredientsSearch.addEventListener('input', (e) => {
 
     displayIngredients(filteredIngredients)
     
-    if (search.length >= 3) {
-
+    if (search.length >= 3 && filteredIngredients.length) {
         $ingredientsList.style.display = "block"
         $ingredientsList.classList.add('ingredients-list-request')
         $ingredientsChevronDown.classList.add('hidden')
@@ -83,13 +84,19 @@ $ingredientsSearch.addEventListener('input', (e) => {
         $ingredientsChevronDown.classList.remove('hidden')
         $ingredientsChevronUp.classList.add('hidden')
     }
-
-    // else if (search.length < 3 && $ingredientsChevronUp.classList.contains('hidden')) {
-    //     // chrevonUpIngredients()
-    //     $ingredientsList.style.display = 'none'
-    // }
-
 })
+
+$ingredientsList.addEventListener('click', e => {
+    console.log("====")
+    console.log(e.target.textContent)
+    console.log("====")
+// $ingredientsNavigation.insertAdjacentHTML('beforebegin', `<div class="selected-ingredient">${e.target.textContent}<i class="far fa-times-circle"></i></div>`)
+
+$wrapperIngredients.innerHTML = `<div class="selected-ingredient">
+    ${e.target.textContent}
+    <i class="far fa-times-circle"></i></div>`
+})
+
 
  
 $appliancesSearch.addEventListener('input', (e) => {
@@ -111,6 +118,7 @@ $appliancesSearch.addEventListener('input', (e) => {
             $appliancesList.classList.remove('appliances-list-request')
 
         })
+
     } else {
         $appliancesList.style.display = "none"
         $appliancesChevronDown.classList.remove('hidden')

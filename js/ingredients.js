@@ -14,6 +14,7 @@ function retrieveAllIngredientsFromRecipes(recipes) {
     }
 }
 
+
 function displayIngredients(ingredients) {
     let ingredient = ""
     let firstThirtyIngredients = ingredients.slice(0, 30)

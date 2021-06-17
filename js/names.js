@@ -14,6 +14,5 @@ function displayAllNames(names){
         recipeName += `<li class="recipe-name-list">${names[i]}</li>`
     }
     $namesList.innerHTML = recipeName
-    console.log (recipeName)
 }
 

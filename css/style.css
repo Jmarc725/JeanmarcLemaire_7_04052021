@@ -160,7 +160,6 @@ input:focus {
 
 }
 
-
 .ingredients-list-request-pb, .appliances-list-request-pb, 
 .ustensils-list-request-pb {
     padding-bottom: 0rem;
@@ -169,6 +168,25 @@ input:focus {
 .ingredients-list-item, .appliances-list-item, 
 .ustensils-list-item {
     list-style-type: none;
+}
+
+/* -------------------- selected elt navigation --------------------- */
+
+.wrapper-selected-ingredients {
+    display: flex;
+}
+
+.selected-ingredient {
+    color: white;
+    background: #3282F7;
+    padding: 10px 5px 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: max-content;
+}
+
+.far {
+    padding-left: 5px;
 }
 
 
