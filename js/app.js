@@ -1,3 +1,5 @@
+// ------------------------------------- Variables
+
 // Arrays
 const allIngredients = []
 const allAppliances = []
@@ -23,12 +25,15 @@ const $appliancesChevronUp = document.querySelector('.appliances-chevron-up')
 const $ustensilsChevronDown = document.querySelector('.ustensils-chevron-down')
 const $ustensilsChevronUp = document.querySelector('.ustensils-chevron-up')
 
+// Icone fermeture
+const $closeSuggestion = document.querySelector('.fa-times-circle')
+
 // Placeholders
 const $placeholderIngredients = document.querySelector('.search-item-blue')
 const $placeholderAppliances = document.querySelector('.search-item-green')
 const $placeholderUstensils = document.querySelector('.search-item-red')
 
-// Input
+// Input Search
 const $recipeNameSearch = document.querySelector('#search')
 const $ingredientsSearch = document.querySelector('#ingredients-search')
 const $appliancesSearch = document.querySelector('#appliances-search')
@@ -37,6 +42,7 @@ const $ustensilsSearch = document.querySelector('#ustensils-search')
 // Navigation
 const $ingredientsNavigation = document.querySelector('.nav-ingredients')
 const $wrapperIngredients = document.querySelector('.wrapper-selected-ingredients')
+const $selectedIngredient = document.querySelector('.selected-ingredient')
 
 // --------------------------------  Filter
 
@@ -47,6 +53,8 @@ function filterRecipeElements(array, request) {
             .indexOf(request.toLowerCase()) !== -1)
 }    
 
+
+// ----------------------------------- addEventListener
 
 window.addEventListener('load', () => {
     chevronDown($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients, displayIngredients(allIngredients))
@@ -59,7 +67,19 @@ window.addEventListener('load', () => {
     chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils)
 })
         
-    
+
+
+function displayIngredients(ingredients) {
+    let ingredient = ""
+    let firstThirtyIngredients = ingredients.slice(0, 30)
+    for(let i = 0; i < firstThirtyIngredients.length; i++){
+       ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
+    }
+    document.querySelector('.ingredients-list').innerHTML = ingredient
+    return ingredient
+}
+
+   
 $ingredientsSearch.addEventListener('input', (e) => {
     const search = e.target.value
     
@@ -76,7 +96,6 @@ $ingredientsSearch.addEventListener('input', (e) => {
         $ingredientsChevronDown.addEventListener('click', () => {
             displayIngredients(allIngredients)
             $ingredientsList.classList.remove('ingredients-list-request')
-
         })
 
     } else {
@@ -87,84 +106,17 @@ $ingredientsSearch.addEventListener('input', (e) => {
 })
 
 $ingredientsList.addEventListener('click', e => {
-    console.log("====")
-    console.log(e.target.textContent)
-    console.log("====")
-// $ingredientsNavigation.insertAdjacentHTML('beforebegin', `<div class="selected-ingredient">${e.target.textContent}<i class="far fa-times-circle"></i></div>`)
 
-$wrapperIngredients.innerHTML = `<div class="selected-ingredient">
-    ${e.target.textContent}
-    <i class="far fa-times-circle"></i></div>`
-})
+$wrapperIngredients.innerHTML += 
+    `<div class="selected-ingredient">
+        ${e.target.textContent}
+        <i class="far fa-times-circle"></i>
+    </div>`
 
 
- 
-$appliancesSearch.addEventListener('input', (e) => {
-    const search = e.target.value
-    
-    const filteredAppliances = filterRecipeElements(allAppliances, search)
+    let clickedElement = e.target
 
-    displayAppliances(filteredAppliances)
-    
-    
-    if (search.length >= 3) {
-        $appliancesList.style.display = "block"
-        $appliancesList.classList.add('appliances-list-request')
-        $appliancesChevronDown.classList.add('hidden')
-        $appliancesChevronUp.classList.remove('hidden')
+    let parentClickedElement = clickedElement.parentNode
+    parentClickedElement.removeChild(clickedElement)
 
-        $appliancesChevronDown.addEventListener('click', () => {
-            displayAppliances(allAppliances)
-            $appliancesList.classList.remove('appliances-list-request')
-
-        })
-
-    } else {
-        $appliancesList.style.display = "none"
-        $appliancesChevronDown.classList.remove('hidden')
-        $appliancesChevronUp.classList.add('hidden')
-    }
-})
-
- 
-$ustensilsSearch.addEventListener('input', (e) => {
-    const search = e.target.value
-    
-    const filteredUstensils = filterRecipeElements(allUstensils, search)
-
-    displayUstensils(filteredUstensils)
-    
-    const ustensilsInput = displayUstensils(filteredUstensils)
-
-    
-    if (search.length >= 3 ){
-        $ustensilsList.style.display = "block"
-        $ustensilsList.classList.add('ustensils-list-request')
-        $ustensilsChevronDown.classList.add('hidden')
-        $ustensilsChevronUp.classList.remove('hidden')
-
-        $ustensilsChevronDown.addEventListener('click', () => {
-            displayUstensils(allUstensils)
-            $ustensilsList.classList.remove('ustensils-list-request')
-        })
-    
-     } else {
-        $ustensilsList.style.display = "none"
-        $ustensilsChevronDown.classList.remove('hidden')
-        $ustensilsChevronUp.classList.add('hidden')
-    }
-})
-
-$recipeNameSearch.addEventListener('input', (e) => {
-    const search = e.target.value
-    
-    const filteredName = filterRecipeElements(allNames, search)
-
-    displayAllNames(filteredName)
-    
-    if (search.length >= 3) {
-        $namesList.style.display ='block'
-    } else {
-        $namesList.style.display ='none'
-    }
 })

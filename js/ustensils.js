@@ -27,3 +27,32 @@ function displayUstensils(ustensils) {
     
     return ustensil
 }
+
+
+$ustensilsSearch.addEventListener('input', (e) => {
+    const search = e.target.value
+    
+    const filteredUstensils = filterRecipeElements(allUstensils, search)
+
+    displayUstensils(filteredUstensils)
+    
+    const ustensilsInput = displayUstensils(filteredUstensils)
+
+    
+    if (search.length >= 3 ){
+        $ustensilsList.style.display = "block"
+        $ustensilsList.classList.add('ustensils-list-request')
+        $ustensilsChevronDown.classList.add('hidden')
+        $ustensilsChevronUp.classList.remove('hidden')
+
+        $ustensilsChevronDown.addEventListener('click', () => {
+            displayUstensils(allUstensils)
+            $ustensilsList.classList.remove('ustensils-list-request')
+        })
+    
+     } else {
+        $ustensilsList.style.display = "none"
+        $ustensilsChevronDown.classList.remove('hidden')
+        $ustensilsChevronUp.classList.add('hidden')
+    }
+})

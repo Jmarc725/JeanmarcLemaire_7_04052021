@@ -14,5 +14,20 @@ function displayAllNames(names){
         recipeName += `<li class="recipe-name-list">${names[i]}</li>`
     }
     $namesList.innerHTML = recipeName
+
 }
 
+
+$recipeNameSearch.addEventListener('input', (e) => {
+    const search = e.target.value
+    
+    const filteredName = filterRecipeElements(allNames, search)
+
+    displayAllNames(filteredName)
+    
+    if (search.length >= 3) {
+        $namesList.style.display ='block'
+    } else {
+        $namesList.style.display ='none'
+    }
+})

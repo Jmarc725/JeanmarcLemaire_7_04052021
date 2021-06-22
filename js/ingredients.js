@@ -15,13 +15,4 @@ function retrieveAllIngredientsFromRecipes(recipes) {
 }
 
 
-function displayIngredients(ingredients) {
-    let ingredient = ""
-    let firstThirtyIngredients = ingredients.slice(0, 30)
-    for(let i = 0; i < firstThirtyIngredients.length; i++){
-       ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
-    }
-    document.querySelector('.ingredients-list').innerHTML = ingredient
-    return ingredient
-}
 
