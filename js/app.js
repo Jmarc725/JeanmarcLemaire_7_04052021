@@ -1,48 +1,9 @@
-// ------------------------------------- Variables
-
-// Arrays
-const allIngredients = []
-const allAppliances = []
-const allUstensils = []
-const allNames = []
-
-// Lists
-const $ingredientsList = document.querySelector('.ingredients-list')
-const $appliancesList = document.querySelector('.appliances-list')
-const $ustensilsList = document.querySelector('.ustensils-list')
-const $namesList = document.querySelector('.recipes-names-list')
-
 $ingredientsList.style.display = 'none'
 $appliancesList.style.display = 'none'
 $ustensilsList.style.display = 'none'
 $namesList.style.display = 'none'
 
-// Chevrons
-const $ingredientsChevronDown = document.querySelector('.ingredients-chevron-down')
-const $ingredientsChevronUp = document.querySelector('.ingredients-chevron-up')
-const $appliancesChevronDown = document.querySelector('.appliances-chevron-down')
-const $appliancesChevronUp = document.querySelector('.appliances-chevron-up')
-const $ustensilsChevronDown = document.querySelector('.ustensils-chevron-down')
-const $ustensilsChevronUp = document.querySelector('.ustensils-chevron-up')
 
-// Icone fermeture
-const $closeSuggestion = document.querySelector('.fa-times-circle')
-
-// Placeholders
-const $placeholderIngredients = document.querySelector('.search-item-blue')
-const $placeholderAppliances = document.querySelector('.search-item-green')
-const $placeholderUstensils = document.querySelector('.search-item-red')
-
-// Input Search
-const $recipeNameSearch = document.querySelector('#search')
-const $ingredientsSearch = document.querySelector('#ingredients-search')
-const $appliancesSearch = document.querySelector('#appliances-search')
-const $ustensilsSearch = document.querySelector('#ustensils-search')
-
-// Navigation
-const $ingredientsNavigation = document.querySelector('.nav-ingredients')
-const $wrapperIngredients = document.querySelector('.wrapper-selected-ingredients')
-const $selectedIngredient = document.querySelector('.selected-ingredient')
 
 // --------------------------------  Filter
 
@@ -106,17 +67,47 @@ $ingredientsSearch.addEventListener('input', (e) => {
 })
 
 $ingredientsList.addEventListener('click', e => {
+    $wrapperIngredients.innerHTML += `
+        <div class="selected-ingredient">
+            ${e.target.textContent}
+            <i class="far fa-times-circle"></i>
+        </div>
+    `
 
-$wrapperIngredients.innerHTML += 
-    `<div class="selected-ingredient">
-        ${e.target.textContent}
-        <i class="far fa-times-circle"></i>
-    </div>`
+    // Retire l'élément/la valeur du tableau
+    const ingredient = e.target.textContent
+    // Splice -> retire un élément d'un tableau
+    allIngredients.splice(
+        // Où on commence
+        allIngredients.indexOf(ingredient),
+        // Combien d'éléments on retire
+        1
+    )
 
-
-    let clickedElement = e.target
-
-    let parentClickedElement = clickedElement.parentNode
+    // Retire l'élément du DOM
+    const clickedElement = e.target
+    const parentClickedElement = clickedElement.parentNode
     parentClickedElement.removeChild(clickedElement)
-
 })
+
+
+$wrapperIngredients.addEventListener('click', e => {
+    console.log(e.target.textContent.trim())
+
+    console.log(e.target)
+
+    // Si c'est l'élément far qui a été cliqué
+    if (e.target.classList.contains('far')) {
+        // Alors que l'élémént "siblings" pour récupérer le nom de l'ingrédient
+    // Sinon si c'est l'élément selected-ingredient qui a été cliqué
+    } else if (e.target.classList.contains('selected-ingredient')) {
+        // Retirer lélément du DOM
+        const clickedElement = e.target
+        const parentClickedElement = clickedElement.parentNode
+        parentClickedElement.removeChild(clickedElement)
+
+        // Ajouter dans le tabeau allIngredients la valeur
+        allIngredients.push(e.target.textContent.trim())
+    }
+})
+
