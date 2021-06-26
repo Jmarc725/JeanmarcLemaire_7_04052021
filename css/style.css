@@ -105,6 +105,7 @@ input:focus {
 .search-navigation {
     padding-left: 5px;
     margin-bottom: 40px;
+    /* display: block ruby */
 }
 
 .nav-item {
@@ -121,18 +122,21 @@ input:focus {
 }
 
 .nav-ingredients, .search-item-blue,
-.ingredients-list, .ingredients-list-request  {
+.ingredients-list, .ingredients-list-request,
+.selected-ingredient  {
     background: #3282F7;
 }
 
 
 .nav-appliances, .search-item-green,
-.appliances-list, .appliances-list-request {
+.appliances-list, .appliances-list-request,
+.selected-appliance {
     background: #68D9A4;
 }
 
 .nav-ustensils, .search-item-red,
-.ustensils-list, .ustensils-list-request {
+.ustensils-list, .ustensils-list-request,
+.selected-ustensil {
     background: #ED6454;
 }
 
@@ -176,9 +180,9 @@ input:focus {
     display: flex;
 }
 
-.selected-ingredient {
+.selected-ingredient, .selected-appliance, 
+.selected-ustensil {
     color: white;
-    background: #3282F7;
     padding: 10px 5px 10px 15px;
     margin-bottom: 10px;
     border-radius: 5px;

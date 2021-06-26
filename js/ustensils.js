@@ -56,3 +56,64 @@ $ustensilsSearch.addEventListener('input', (e) => {
         $ustensilsChevronUp.classList.add('hidden')
     }
 })
+
+
+
+$ustensilsList.addEventListener('click', e => {
+
+
+    if (e.target.className !== 'ustensils-list') {
+    $wrapperUstensils.innerHTML += `
+        <div class="selected-ustensil">
+            ${e.target.textContent}
+            <i class="far fa-times-circle"></i>
+        </div>
+    `
+    
+    // Retire l'élément/la valeur du tableau
+    const ustensil = e.target.textContent
+    // Splice -> retire un élément d'un tableau
+    allUstensils.splice(
+        // Où on commence
+        allUstensils.indexOf(ustensil),
+        // Combien d'éléments on retire
+        1
+    )
+
+    console.log(allUstensils)
+    // Retire l'élément du DOM
+    const clickedElement = e.target
+    const parentClickedElement = clickedElement.parentNode
+    parentClickedElement.removeChild(clickedElement)
+    }
+})
+
+
+$wrapperUstensils.addEventListener('click', e => {
+    // console.log(e.target.textContent.trim())
+
+    // console.log(e.target)
+
+    // Si c'est l'élément far qui a été cliqué
+    if (e.target.classList.contains('far')) {
+        // Alors que l'élémént "siblings" pour récupérer le nom de l'ingrédient
+    // Sinon si c'est l'élément selected-ingredient qui a été cliqué
+        const clickedElement = e.target
+        const parentClickedElement = clickedElement.parentNode
+        parentClickedElement.remove()
+        console.log(parentClickedElement)
+
+        allUstensils.unshift(parentClickedElement.textContent.trim())
+        console.log(allUstensils)
+        
+    } else if (e.target.classList.contains('selected-ustensil')) {
+        // Retirer lélément du DOM
+        const clickedElement = e.target
+        const parentClickedElement = clickedElement.parentNode
+        parentClickedElement.removeChild(clickedElement)
+
+        // Ajouter dans le tabeau allIngredients la valeur
+        allUstensils.unshift(e.target.textContent.trim())
+    }
+})
+

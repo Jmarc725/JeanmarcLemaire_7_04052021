@@ -32,7 +32,13 @@ const $ingredientsSearch = document.querySelector('#ingredients-search')
 const $appliancesSearch = document.querySelector('#appliances-search')
 const $ustensilsSearch = document.querySelector('#ustensils-search')
 
-// Navigation
+// Navigation ingredients
 const $ingredientsNavigation = document.querySelector('.nav-ingredients')
 const $wrapperIngredients = document.querySelector('.wrapper-selected-ingredients')
 const $selectedIngredient = document.querySelector('.selected-ingredient')
+
+// Navigation appliances
+const $wrapperAppliances = document.querySelector('.wrapper-selected-appliances')
+
+// Navigation ustensils
+const $wrapperUstensils = document.querySelector('.wrapper-selected-ustensils')

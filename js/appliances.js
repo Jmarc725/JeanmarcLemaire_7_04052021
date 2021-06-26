@@ -49,3 +49,62 @@ $appliancesSearch.addEventListener('input', (e) => {
         $appliancesChevronUp.classList.add('hidden')
     }
 })
+
+
+
+$appliancesList.addEventListener('click', e => {
+
+    if (e.target.className !== 'appliances-list') {
+    $wrapperAppliances.innerHTML += `
+        <div class="selected-appliance">
+            ${e.target.textContent}
+            <i class="far fa-times-circle"></i>
+        </div>
+    `
+    // Retire l'élément/la valeur du tableau
+    const appliance = e.target.textContent
+    // Splice -> retire un élément d'un tableau
+    allAppliances.splice(
+        // Où on commence
+        allAppliances.indexOf(appliance),
+        // Combien d'éléments on retire
+        1
+    )
+
+    console.log(allAppliances)
+    // Retire l'élément du DOM
+    const clickedElement = e.target
+    const parentClickedElement = clickedElement.parentNode
+    parentClickedElement.removeChild(clickedElement)
+    }
+})
+
+
+$wrapperAppliances.addEventListener('click', e => {
+    // console.log(e.target.textContent.trim())
+
+    // console.log(e.target)
+
+    // Si c'est l'élément far qui a été cliqué
+    if (e.target.classList.contains('far')) {
+        // Alors que l'élémént "siblings" pour récupérer le nom de l'ingrédient
+    // Sinon si c'est l'élément selected-ingredient qui a été cliqué
+        const clickedElement = e.target
+        const parentClickedElement = clickedElement.parentNode
+        parentClickedElement.remove()
+        console.log(parentClickedElement)
+
+        allAppliances.unshift(parentClickedElement.textContent.trim())
+        console.log(allAppliances)
+        
+    } else if (e.target.classList.contains('selected-appliance')) {
+        // Retirer lélément du DOM
+        const clickedElement = e.target
+        const parentClickedElement = clickedElement.parentNode
+        parentClickedElement.removeChild(clickedElement)
+
+        // Ajouter dans le tabeau allIngredients la valeur
+        allAppliances.unshift(e.target.textContent.trim())
+    }
+})
+
