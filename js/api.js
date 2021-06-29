@@ -8,6 +8,8 @@ fetch("assets/recipes.json")
     retrieveAllAppliancesFromRecipes(recipes)   
     retrieveAllUstensilsFromRecipes(recipes)  
     retrieveAllNamesRecipes(recipes)
+
+    allRecipes = recipes
  
     const recipeCardsHtml = createRecipeCards(recipes)
     document.querySelector('.cards-grid').innerHTML = recipeCardsHtml

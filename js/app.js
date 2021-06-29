@@ -27,5 +27,32 @@ window.addEventListener('load', () => {
     chevronDown($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils, displayUstensils(allUstensils))
     chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils)
 })
-        
+
+
+function filterRecipes(ingredient) {
+    // 1. On connait l'ingrédient qu'on veut filter
+        // Done
+    // 2. On veut avoir une variable qui contient toutes les recettes ( => allRecipes )
+        // Done
+    // 3. On veut filtrer le tableau allRecipes par rapport à l'ingrédient sélectionné
+
+
+    let filteredRecipes = []
+
+    // Première étape : tu boucles sur ton tableau allRecipes
+    // Deuxième étape : tu boucles sur le tableau ingredients contenu dans chaque objet recipe
+    // Troisième étape : si ton paramètre ingrédient est présent dans ta deuxième étape
+        // Alors : tu veux ajouter cette recette au tableau filteredRecipes
+        // Sinon : tu fais rien et tu continues de boucler
+    // Quatrième étape : tu fais un console.log(filteredRecipes)
+    // Cinquième étape : vider le noeud cards-grid de toutes les recettes
+    // Sixième étape : appeler la fonction createRecipeCards en lui passant en paramètre filteredRecipes
+
+    console.log("===")
+    console.log(ingredient)
+    console.log("===")
+    console.log("===")
+    console.log(allRecipes)
+    console.log("===")
+}
 

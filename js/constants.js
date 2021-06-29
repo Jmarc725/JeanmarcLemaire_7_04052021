@@ -4,6 +4,8 @@ const allAppliances = []
 const allUstensils = []
 const allNames = []
 
+let allRecipes = []
+
 // Lists
 const $ingredientsList = document.querySelector('.ingredients-list')
 const $appliancesList = document.querySelector('.appliances-list')
