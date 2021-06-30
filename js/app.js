@@ -41,14 +41,15 @@ function filterRecipes(ingredient) {
 
     for (let i = 0; i < allRecipes.length; i++){
 
-        const recipeIndex = allRecipes[i]
 
         for (let y = 0; y < allRecipes[i].ingredients; y++){
 
             const ingredientName = allRecipes[i].ingredients[y].ingredient
             
-            if(ingredientName.includes(ingredient)){
-                filteredRecipes.push(ingredientName.indexOf(recipeIndex))
+            if(ingredientName.indexOf(ingredient) !== -1){
+                // filteredRecipes.push(ingredientName.indexOf(recipeIndex))
+                let recipeIndex = allRecipes[i].includes(ingredientName.indexOf(ingredient))
+                filteredRecipes.push(recipeIndex)
             }
         }
     }
