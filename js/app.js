@@ -39,6 +39,19 @@ function filterRecipes(ingredient) {
 
     let filteredRecipes = []
 
+    for (let i = 0; i < allRecipes.length; i++){
+
+        const recipeIndex = allRecipes[i]
+
+        for (let y = 0; y < allRecipes[i].ingredients; y++){
+
+            const ingredientName = allRecipes[i].ingredients[y].ingredient
+            
+            if(ingredientName.includes(ingredient)){
+                filteredRecipes.push(ingredientName.indexOf(recipeIndex))
+            }
+        }
+    }
     // Première étape : tu boucles sur ton tableau allRecipes
     // Deuxième étape : tu boucles sur le tableau ingredients contenu dans chaque objet recipe
     // Troisième étape : si ton paramètre ingrédient est présent dans ta deuxième étape
@@ -48,11 +61,14 @@ function filterRecipes(ingredient) {
     // Cinquième étape : vider le noeud cards-grid de toutes les recettes
     // Sixième étape : appeler la fonction createRecipeCards en lui passant en paramètre filteredRecipes
 
-    console.log("===")
-    console.log(ingredient)
-    console.log("===")
-    console.log("===")
-    console.log(allRecipes)
-    console.log("===")
+console.log(filteredRecipes)
+
+    // console.log("===")
+    // console.log(ingredient)
+    // console.log("===")
+    // console.log("===")
+    // console.log(allRecipes)
+    // console.log("===")
+
 }
 

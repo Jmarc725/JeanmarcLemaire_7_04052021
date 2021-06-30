@@ -78,7 +78,6 @@ $ingredientsList.addEventListener('click', e => {
     // On appelle la fonction pour filtrer les recettes affichées
     filterRecipes(ingredient)
 
-    console.log(allIngredients)
     // Retire l'élément du DOM
     const clickedElement = e.target
     const parentClickedElement = clickedElement.parentNode
