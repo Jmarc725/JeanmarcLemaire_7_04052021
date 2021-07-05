@@ -45,11 +45,11 @@ function filterRecipes(ingredient) {
         for (let y = 0; y < allRecipes[i].ingredients; y++){
 
             const ingredientName = allRecipes[i].ingredients[y].ingredient
+            const elementFound = allRecipes[i].filter(el => el.ingredientName.indexOf(ingredient) !== -1)
+
             
-            if(ingredientName.indexOf(ingredient) !== -1){
-                // filteredRecipes.push(ingredientName.indexOf(recipeIndex))
-                let recipeIndex = allRecipes[i].includes(ingredientName.indexOf(ingredient))
-                filteredRecipes.push(recipeIndex)
+            if(elementFound){
+                filteredRecipes.push(elementFound)
             }
         }
     }
@@ -62,7 +62,6 @@ function filterRecipes(ingredient) {
     // Cinquième étape : vider le noeud cards-grid de toutes les recettes
     // Sixième étape : appeler la fonction createRecipeCards en lui passant en paramètre filteredRecipes
 
-console.log(filteredRecipes)
 
     // console.log("===")
     // console.log(ingredient)
