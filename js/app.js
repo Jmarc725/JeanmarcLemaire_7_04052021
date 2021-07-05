@@ -27,11 +27,6 @@ const $placeholderIngredients = document.querySelector('input.search-item-blue')
 const $placeholderAppliances = document.querySelector('.search-item-green')
 const $placeholderUstensils = document.querySelector('.search-item-red')
 
-// Fonctions dans variables
-// const displayIngredient = displayIngredients(allIngredients)
-// const displayAppliance = displayAppliances(allAppliances)
-// const displayUstensil = displayUstensils(allUstensils)
-
 
 // -------------------------------------------- Functions ---------------------
 
@@ -191,28 +186,8 @@ function chevronDown(down, up, list, placeholder, variable){
         placeholder.value = ""
         placeholder.focus()
         variable
-        // displayIngredients(allIngredients)
-
     })
 }
-
-// function chevronUp(down, up, list, placeholder){
-//     up.addEventListener('click', () => {
-        // down.classList.toggle('hidden')
-        // up.classList.toggle('hidden')
-        // list.style.display = 'none'
-//         placeholder.value = placeholder.getAttribute('value')
-//     })
-// }
-
-// chevronDown($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients, displayIngredients(allIngredients))
-// chevronUp($ingredientsChevronDown, $ingredientsChevronUp, $ingredientsList, $placeholderIngredients)
-
-// chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances, displayAppliances(allAppliances))
-// chevronUp($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
-
-// chevronDown($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils, displayUstensils(allUstensils))
-// chevronUp($ustensilsChevronDown, $ustensilsChevronUp, $ustensilsList, $placeholderUstensils)
 
 
 const chevronsUp = [
@@ -296,8 +271,6 @@ function filterRecipeElements(array, search){
 }
 
 
-
-
 const main = async () => {
     const data = await retrieveRecipesData()
 
@@ -320,66 +293,3 @@ const main = async () => {
 }
 main()
 
-
-
-// chevronDown($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
-// chevronUp($appliancesChevronDown, $appliancesChevronUp, $appliancesList, $placeholderAppliances)
-
-// Ingredients
-// $ingredientsChevronDown.addEventListener('click', () => {
-//     $ingredientsChevronDown.classList.toggle('hidden')
-//     $ingredientsChevronUp.classList.toggle('hidden')
-//     $ingredientsList.style.display = 'block'
-//     $placeholderIngredients.value =""
-//     $placeholderIngredients.focus()
-
-//     displayIngredients(allIngredients)
-// })
-
-// $ingredientsChevronUp.addEventListener('click', () => {
-//     $ingredientsChevronDown.classList.toggle('hidden')
-//     $ingredientsChevronUp.classList.toggle('hidden')
-//     $ingredientsList.style.display ='none'
-//     $placeholderIngredients.value ="Ingrédients"
-
-// })
-
-// // Appliances
-// $appliancesChevronDown.addEventListener('click', () => {
-//     $appliancesChevronDown.classList.toggle('hidden')
-//     $appliancesChevronUp.classList.toggle('hidden')
-//     $appliancesList.style.display = 'block'
-//     $placeholderAppliances.value =""
-//     $placeholderAppliances.focus()
-
-//     displayAppliances(allAppliances)
-// })
-
-// $appliancesChevronUp.addEventListener('click', () => {
-//     $appliancesChevronDown.classList.toggle('hidden')
-//     $appliancesChevronUp.classList.toggle('hidden')
-//     $appliancesList.style.display ='none'
-//     $placeholderAppliances.value ="Appareils"
-
-// })
-
-// Utencils
-// $ustensilsChevronDown.addEventListener('click', () => {
-//     $ustensilsChevronDown.classList.toggle('hidden')
-//     $ustensilsChevronUp.classList.toggle('hidden')
-//     $ustensilsList.style.display = 'block'
-//     $placeholderUstensils.value =""
-//     $placeholderUstensils.focus()
-
-//     displayUtencils(allUstensils)
-// })
-
-// $ustensilsChevronUp.addEventListener('click', () => {
-//     $ustensilsChevronDown.classList.toggle('hidden')
-//     $ustensilsChevronUp.classList.toggle('hidden')
-//     $ustensilsList.style.display ='none'
-//     $placeholderUstensils.value ="Ustenciles"
-
-// })
-
-// console.log($placeholderIngredients.getAttribute('value'))
