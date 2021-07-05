@@ -62,7 +62,7 @@ function filterRecipes(ingredient) {
     // Cinquième étape : vider le noeud cards-grid de toutes les recettes
     // Sixième étape : appeler la fonction createRecipeCards en lui passant en paramètre filteredRecipes
 
-
+console.log(filteredRecipes)
     // console.log("===")
     // console.log(ingredient)
     // console.log("===")
