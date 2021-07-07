@@ -39,20 +39,21 @@ function filterRecipes(ingredient) {
 
     let filteredRecipes = []
 
-    for (let i = 0; i < allRecipes.length; i++){
+    for (let i = 0; i < 5; i++){
+        const recipe = allRecipes[i]
 
+        for (let j = 0; j < recipe.ingredients.length; j++) {
+            const recipeIngredient = recipe.ingredients[j].ingredient
 
-        for (let y = 0; y < allRecipes[i].ingredients; y++){
-
-            const ingredientName = allRecipes[i].ingredients[y].ingredient
-            const elementFound = allRecipes[i].filter(el => el.ingredientName.indexOf(ingredient) !== -1)
-
-            
-            if(elementFound){
-                filteredRecipes.push(elementFound)
+            if (ingredient === recipeIngredient) {
+                filteredRecipes.push(recipe)
             }
         }
     }
+
+    console.log("++++")
+    console.log(filteredRecipes)
+    console.log("++++")
     // Première étape : tu boucles sur ton tableau allRecipes
     // Deuxième étape : tu boucles sur le tableau ingredients contenu dans chaque objet recipe
     // Troisième étape : si ton paramètre ingrédient est présent dans ta deuxième étape
