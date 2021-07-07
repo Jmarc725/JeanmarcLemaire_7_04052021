@@ -83,6 +83,7 @@ $ingredientsList.addEventListener('click', e => {
     const parentClickedElement = clickedElement.parentNode
     parentClickedElement.removeChild(clickedElement)
     }
+
 })
 
 
@@ -111,7 +112,10 @@ $wrapperIngredients.addEventListener('click', e => {
 
         // Ajouter dans le tabeau allIngredients la valeur
         allIngredients.unshift(e.target.textContent.trim())
+
+
     }
+
 })
 
 

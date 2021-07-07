@@ -6,6 +6,11 @@ const allNames = []
 
 let allRecipes = []
 
+
+// Recettes intégrales
+const $cardsGrid = document.querySelector('.cards-grid')
+const $recipeCard = document.getElementsByClassName('recipe-card')
+
 // Lists
 const $ingredientsList = document.querySelector('.ingredients-list')
 const $appliancesList = document.querySelector('.appliances-list')

@@ -12,7 +12,7 @@ fetch("assets/recipes.json")
     allRecipes = recipes
  
     const recipeCardsHtml = createRecipeCards(recipes)
-    document.querySelector('.cards-grid').innerHTML = recipeCardsHtml
+    $cardsGrid.innerHTML = recipeCardsHtml
 
     displayIngredients(allIngredients)
     displayAppliances(allAppliances)

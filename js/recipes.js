@@ -1,6 +1,6 @@
 // Création des recettes pour le HTML
 function createRecipeCards(recipes) {
-    let contentHtml = ''
+  let contentHtml = ''
 
     // Parcourt ton tableau de recettes (50)
     for (let i = 0; i < recipes.length; i++) {
@@ -59,3 +59,5 @@ function createRecipeCards(recipes) {
     }
     return contentHtml
 }
+
+
