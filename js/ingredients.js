@@ -103,6 +103,8 @@ $wrapperIngredients.addEventListener('click', e => {
 
         allIngredients.unshift(parentClickedElement.textContent.trim())
         console.log(allIngredients)
+
+
         
     } else if (e.target.classList.contains('selected-ingredient')) {
         // Retirer lélément du DOM
@@ -116,6 +118,14 @@ $wrapperIngredients.addEventListener('click', e => {
 
     }
 
+    for (let i = 0; i < $recipeCard.length; i++){
+        const eachRecipe = $recipeCard[i]
+        eachRecipe.remove()
+        }  
+    
+        const RecipesCards = createRecipeCards(allRecipes)
+        $cardsGrid.innerHTML = RecipesCards
+        
 })
 
 

@@ -44,10 +44,10 @@ function filterRecipes(ingredient) {
 
 
         for (let j = 0; j < recipe.ingredients.length; j++) {
-            const recipeIngredient = recipe.ingredients[j].ingredient
+             const recipeIngredient = recipe.ingredients[j].ingredient
 
             if (ingredient === recipeIngredient) {
-                filteredRecipes.push(recipe)
+                filteredRecipes.push(recipe) 
             }
         }
 
@@ -56,6 +56,11 @@ function filterRecipes(ingredient) {
             eachRecipe.remove()
             }  
         }
+
+
+const foundRecipes = createRecipeCards(filteredRecipes)
+$cardsGrid.innerHTML = foundRecipes
+
 
 console.log("++++")
     console.log(filteredRecipes)
@@ -68,9 +73,6 @@ console.log("++++")
     // Quatrième étape : tu fais un console.log(filteredRecipes)
     // Cinquième étape : vider le noeud cards-grid de toutes les recettes
     // Sixième étape : appeler la fonction createRecipeCards en lui passant en paramètre filteredRecipes
-
-const foundRecipes = createRecipeCards(filteredRecipes)
-$cardsGrid.innerHTML = foundRecipes
 
 }
 
