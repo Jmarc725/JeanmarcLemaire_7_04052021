@@ -214,6 +214,7 @@ const chevronsUp = [
 
 function handleChevronDown(type) {
     const matchedChevron = chevronsUp.filter(chevron => chevron.type === type)[0]
+    console.log(matchedChevron)
 
     matchedChevron['downNode'].classList.toggle('hidden')
     matchedChevron['upNode'].classList.toggle('hidden')
@@ -222,7 +223,10 @@ function handleChevronDown(type) {
     const unmatchedChevronUp = chevronsUp.filter(chevron => chevron.type !== type)
     unmatchedChevronUp.forEach(chevron => {
         chevron['listNode'].style.display = 'none'
-
+        if(chevron['downNode'].classList.contains('hidden')){
+            chevron['upNode'].classList.toggle('hidden')
+            chevron['downNode'].classList.toggle('hidden')
+        }
 
     })
 }
