@@ -30,47 +30,7 @@ const $placeholderUstensils = document.querySelector('.search-item-red')
 
 // -------------------------------------------- Functions ---------------------
 
-// Ingredients
-function displayIngredients(ingredients) {
-    let ingredient = ""
-    let firstThirtyIngredients = ingredients.slice(0, 30)
-    for(let i = 0; i < firstThirtyIngredients.length; i++){
-        ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
-    }
-    document.querySelector('.ingredients-list').innerHTML = ingredient
-    return ingredient
-}
-
-
-
-// Appliances
-function displayAppliances(appliances) {
-    let appliance = ""
-    
-    for(let i = 0; i < appliances.length; i++){
-        appliance += `<li class="appliances-list-item">${appliances[i]}</li>`
-    }
-    
-    document.querySelector('.appliances-list').innerHTML = appliance
-    
-    return appliance
-}
-
-// Utencils
-function displayUstensils(ustensils) {
-    let ustensil = ""
-    let firstThirtyUstensils = ustensils.slice(0, 30)
-    
-    for(let i = 0; i < firstThirtyUstensils.length; i++){
-        ustensil += `<li class="ustensils-list-item">${firstThirtyUstensils[i]}</li>`
-    }
-   
-    document.querySelector('.ustensils-list').innerHTML = ustensil
-    
-    return ustensil
-}
-
-
+// Génération de recettes
 function createRecipeCards(recipes) {
     let contentHtml = ''
 
@@ -124,47 +84,133 @@ function createRecipeCards(recipes) {
     return contentHtml
 }
 
-function retrieveAllIngredientsFromRecipes(recipes) {    
-    for (let i = 0; i < recipes.length; i++) {
-        for (let y = 0; y < recipes[i].ingredients.length; y++) {
+// -------------------------------
 
-            const ingredientName = recipes[i].ingredients[y].ingredient
+// Ingredients
 
-            // Ici je cherche les ingrédients qui ne sont pas présents dans mon tableau
-            if (allIngredients.indexOf(ingredientName) === -1) {
-                // Si l'ingrédient n'est pas présent, alors je le rajoute dans mon tableau
-                allIngredients.push(ingredientName)
-            }
-        }
-    }
+// function retrieveAllIngredientsFromRecipes(recipes) {    
+//     for (let i = 0; i < recipes.length; i++) {
+//         for (let y = 0; y < recipes[i].ingredients.length; y++) {
+
+//             const ingredientName = recipes[i].ingredients[y].ingredient
+
+//             // Ici je cherche les ingrédients qui ne sont pas présents dans mon tableau
+//             if (allIngredients.indexOf(ingredientName) === -1) {
+//                 // Si l'ingrédient n'est pas présent, alors je le rajoute dans mon tableau
+//                 allIngredients.push(ingredientName)
+//             }
+//         }
+//     }
+// }
+
+
+function retrieveAllIngredientsFromRecipes(recipes){
+    recipes.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => {
+            const eachIngredient = ingredient.ingredient
+
+                if(allIngredients.indexOf(eachIngredient) === -1){
+                    allIngredients.push(eachIngredient)
+                }
+        })
+    })
 }
+   
+
+function displayIngredients(ingredients) {
+    let ingredient = ""
+    let firstThirtyIngredients = ingredients.slice(0, 30)
+
+    for(let i = 0; i < firstThirtyIngredients.length; i++){
+        ingredient += `<li class="ingredients-list-item">${firstThirtyIngredients[i]}</li>`
+    }
+
+    document.querySelector('.ingredients-list').innerHTML = ingredient
+    
+    return ingredient
+}
+
+// ------------------------------------------
+
+// Appliances
+
+// function retrieveAllAppliancesFromRecipes(recipes){
+//     for (let i = 0; i < recipes.length; i++){
+//         const applianceName = recipes[i].appliance
+
+//         if (allAppliances.indexOf(applianceName) === -1){
+//             allAppliances.push(applianceName)
+//         }
+//     }
+// }
 
 function retrieveAllAppliancesFromRecipes(recipes){
-    for (let i = 0; i < recipes.length; i++){
-        const applianceName = recipes[i].appliance
+    recipes.forEach(recipe => {
+        const eachAppliance = recipe.appliance
 
-        if (allAppliances.indexOf(applianceName) === -1){
-            allAppliances.push(applianceName)
+        if (allAppliances.indexOf(eachAppliance) === -1){
+            allAppliances.push(eachAppliance)
         }
-    }
+    })
 }
 
-function retrieveAllUstensilsFromRecipes(recipes) {    
-    for (let i = 0; i < recipes.length; i++) {
-        for (let y = 0; y < recipes[i].ustensils.length; y++) {
-
-            const ustensilName = recipes[i].ustensils[y]
-
-            // Ici je cherche les ingrédients qui ne sont pas présents dans mon tableau
-            if (allUstensils.indexOf(ustensilName) === -1) {
-                // Si l'ingrédient n'est pas présent, alors je le rajoute dans mon tableau
-                allUstensils.push(ustensilName)
-            }
-        }
-    }
-}
+function displayAppliances(appliances) {
+    let appliance = ""
     
-        
+    for (let i = 0; i < appliances.length; i++){
+        appliance += `<li class="appliances-list-item">${appliances[i]}</li>`
+    }
+    
+    document.querySelector('.appliances-list').innerHTML = appliance
+    
+    return appliance
+}
+
+//----------------------------
+
+// Utencils
+
+// function retrieveAllUstensilsFromRecipes(recipes) {    
+//     for (let i = 0; i < recipes.length; i++) {
+//         for (let y = 0; y < recipes[i].ustensils.length; y++) {
+
+//             const ustensilName = recipes[i].ustensils[y]
+
+//             // Ici je cherche les ingrédients qui ne sont pas présents dans mon tableau
+//             if (allUstensils.indexOf(ustensilName) === -1) {
+//                 // Si l'ingrédient n'est pas présent, alors je le rajoute dans mon tableau
+//                 allUstensils.push(ustensilName)
+//             }
+//         }
+//     }
+// }
+
+
+function retrieveAllUstensilsFromRecipes(recipes){
+    recipes.forEach(recipe => {
+        const ustensils = recipe.ustensils
+        ustensils.forEach(ustensil => {
+            if (allUstensils.indexOf(ustensil) === -1){
+                allUstensils.push(ustensil)
+            }
+        })
+    })
+}
+  
+function displayUstensils(ustensils) {
+    let ustensil = ""
+    let firstThirtyUstensils = ustensils.slice(0, 30)
+    
+    for (let i = 0; i < firstThirtyUstensils.length; i++){
+        ustensil += `<li class="ustensils-list-item">${firstThirtyUstensils[i]}</li>`
+    }
+   
+    document.querySelector('.ustensils-list').innerHTML = ustensil
+    
+    return ustensil
+}
+
+
 
 // -------------------------------------------- API -------------------------
 
@@ -178,16 +224,16 @@ const retrieveRecipesData = () => fetch("assets/recipes.json")
 // Session avec Thomas 25/05/2021
 
 
-function chevronDown(down, up, list, placeholder, variable){
-    down.addEventListener('click', () => {
-        down.classList.toggle('hidden')
-        up.classList.toggle('hidden')
-        list.style.display = 'block'
-        placeholder.value = ""
-        placeholder.focus()
-        variable
-    })
-}
+// function chevronDown(down, up, list, placeholder, variable){
+//     down.addEventListener('click', () => {
+//         down.classList.toggle('hidden')
+//         up.classList.toggle('hidden')
+//         list.style.display = 'block'
+//         placeholder.value = ""
+//         placeholder.focus()
+//         variable
+//     })
+// }
 
 
 const chevronsUp = [
@@ -214,7 +260,6 @@ const chevronsUp = [
 
 function handleChevronDown(type) {
     const matchedChevron = chevronsUp.filter(chevron => chevron.type === type)[0]
-    console.log(matchedChevron)
 
     matchedChevron['downNode'].classList.toggle('hidden')
     matchedChevron['upNode'].classList.toggle('hidden')
