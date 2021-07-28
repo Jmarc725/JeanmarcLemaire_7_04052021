@@ -38,35 +38,38 @@ $ingredientsSearch.addEventListener('input', (e) => {
     if (search.length >= 3 && filteredIngredients.length) {
         $ingredientsList.style.display = "block"
         $ingredientsList.classList.add('ingredients-list-request')
-        $ingredientsChevronDown.classList.add('hidden')
-        $ingredientsChevronUp.classList.remove('hidden')
+        
+        } else if ($ingredientsChevronUp.classList.contains('hidden')){
+        $ingredientsChevronDown.classList.toggle('hidden')
+        $ingredientsChevronUp.classList.toggle('hidden')
 
         $ingredientsChevronDown.addEventListener('click', () => {
-            displayIngredients(allIngredients)
-            $ingredientsList.classList.remove('ingredients-list-request')
+        displayIngredients(allIngredients)
+        $ingredientsList.classList.remove('ingredients-list-request')
         })
-
-    } else {
-        $ingredientsList.style.display = "none"
-        $ingredientsChevronDown.classList.remove('hidden')
-        $ingredientsChevronUp.classList.add('hidden')
     }
+        
+    else if (search.length < 3) {
+            $ingredientsList.style.display = "none"
+            $ingredientsChevronDown.classList.toggle('hidden')
+            $ingredientsChevronUp.classList.toggle('hidden')
+        }
 })
 
 
 $ingredientsList.addEventListener('click', e => {
 
+    const ingredient = e.target.textContent
+
 
     if (e.target.className !== 'ingredients-list') {
     $wrapperIngredients.innerHTML += `
         <div class="selected-ingredient">
-            ${e.target.textContent}
+            ${ingredient}
             <i class="far fa-times-circle"></i>
         </div>
     `
-    
     // Retire l'élément/la valeur du tableau
-    const ingredient = e.target.textContent
     // Splice -> retire un élément d'un tableau
     allIngredients.splice(
         // Où on commence
@@ -75,23 +78,25 @@ $ingredientsList.addEventListener('click', e => {
         1
     )
 
+    filteredIngredientsRecipes.push(ingredient)
+
+
     // On appelle la fonction pour filtrer les recettes affichées
-    filterRecipes(ingredient)
+    filterRecipes()
 
     // Retire l'élément du DOM
     const clickedElement = e.target
     const parentClickedElement = clickedElement.parentNode
     parentClickedElement.removeChild(clickedElement)
     }
-
 })
 
 
 $wrapperIngredients.addEventListener('click', e => {
+    
     // console.log(e.target.textContent.trim())
-
-    // console.log(e.target)
-
+    const ingredient = e.target.textContent
+    
     // Si c'est l'élément far qui a été cliqué
     if (e.target.classList.contains('far')) {
         // Alors que l'élémént "siblings" pour récupérer le nom de l'ingrédient
@@ -99,13 +104,9 @@ $wrapperIngredients.addEventListener('click', e => {
         const clickedElement = e.target
         const parentClickedElement = clickedElement.parentNode
         parentClickedElement.remove()
-        console.log(parentClickedElement)
 
-        allIngredients.unshift(parentClickedElement.textContent.trim())
-        console.log(allIngredients)
+        allIngredients.push(parentClickedElement.textContent.trim())
 
-
-        
     } else if (e.target.classList.contains('selected-ingredient')) {
         // Retirer lélément du DOM
         const clickedElement = e.target
@@ -113,19 +114,14 @@ $wrapperIngredients.addEventListener('click', e => {
         parentClickedElement.removeChild(clickedElement)
 
         // Ajouter dans le tabeau allIngredients la valeur
-        allIngredients.unshift(e.target.textContent.trim())
-
-
+        allIngredients.push(e.target.textContent.trim())
     }
 
-    for (let i = 0; i < $recipeCard.length; i++){
-        const eachRecipe = $recipeCard[i]
-        eachRecipe.remove()
-        }  
-    
-        const RecipesCards = createRecipeCards(allRecipes)
-        $cardsGrid.innerHTML = RecipesCards
-        
+    filteredIngredientsRecipes.splice(filteredIngredientsRecipes.indexOf(ingredient))
+    displaySelectedRecipes.splice(filteredIngredientsRecipes)
+
+
+    $cardsGrid.innerHTML = createRecipeCards(displaySelectedRecipes)
 })
 
 

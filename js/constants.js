@@ -5,7 +5,8 @@ const allUstensils = []
 const allNames = []
 
 let allRecipes = []
-
+const displaySelectedRecipes = []
+const filteredIngredientsRecipes = []
 
 // Recettes intégrales
 const $cardsGrid = document.querySelector('.cards-grid')
@@ -42,7 +43,6 @@ const $ustensilsSearch = document.querySelector('#ustensils-search')
 // Navigation ingredients
 const $ingredientsNavigation = document.querySelector('.nav-ingredients')
 const $wrapperIngredients = document.querySelector('.wrapper-selected-ingredients')
-const $selectedIngredient = document.querySelector('.selected-ingredient')
 
 // Navigation appliances
 const $wrapperAppliances = document.querySelector('.wrapper-selected-appliances')

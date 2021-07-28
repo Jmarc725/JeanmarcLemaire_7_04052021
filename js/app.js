@@ -29,42 +29,44 @@ window.addEventListener('load', () => {
 })
 
 
-function filterRecipes(ingredient) {
-    // 1. On connait l'ingrédient qu'on veut filter
-        // Done
-    // 2. On veut avoir une variable qui contient toutes les recettes ( => allRecipes )
-        // Done
-    // 3. On veut filtrer le tableau allRecipes par rapport à l'ingrédient sélectionné
+function filterRecipes() {
+//     // 1. On connait l'ingrédient qu'on veut filter 1.a ou le tableau d'ingrédients
+//     // 2. On veut avoir une variable qui contient toutes les recettes ( => allRecipes )
+//     // 3. On veut filtrer le tableau allRecipes par rapport à l'ingrédient sélectionné ou le tableau
 
-
-    let filteredRecipes = []
 
     for (let i = 0; i < allRecipes.length; i++){
         const recipe = allRecipes[i]
 
-
         for (let j = 0; j < recipe.ingredients.length; j++) {
              const recipeIngredient = recipe.ingredients[j].ingredient
 
-            if (ingredient === recipeIngredient) {
-                filteredRecipes.push(recipe) 
+            if (filteredIngredientsRecipes.indexOf(recipeIngredient) !== -1) {
+                displaySelectedRecipes.push(recipe) 
             }
         }
+    }
 
-        for (let i = 0; i < $recipeCard.length; i++){
-            const eachRecipe = $recipeCard[i]
-            eachRecipe.remove()
-            }  
-        }
+console.log(displaySelectedRecipes)
 
+        $cardsGrid.innerHTML = createRecipeCards(displaySelectedRecipes)
 
-const foundRecipes = createRecipeCards(filteredRecipes)
-$cardsGrid.innerHTML = foundRecipes
+}
 
 
-console.log("++++")
-    console.log(filteredRecipes)
-    console.log("++++")
+
+        // for (let i = 0; i < $recipeCard.length; i++){
+        //     const eachRecipe = $recipeCard[i]
+        //     eachRecipe.remove()
+        //     }  
+        
+
+
+
+
+// console.log("++++")
+//     console.log(filteredRecipes)
+//     console.log("++++")
     // Première étape : tu boucles sur ton tableau allRecipes
     // Deuxième étape : tu boucles sur le tableau ingredients contenu dans chaque objet recipe
     // Troisième étape : si ton paramètre ingrédient est présent dans ta deuxième étape
@@ -74,5 +76,5 @@ console.log("++++")
     // Cinquième étape : vider le noeud cards-grid de toutes les recettes
     // Sixième étape : appeler la fonction createRecipeCards en lui passant en paramètre filteredRecipes
 
-}
+
 
