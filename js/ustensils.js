@@ -63,7 +63,7 @@ $ustensilsList.addEventListener('click', e => {
 
 
     if (e.target.className !== 'ustensils-list') {
-    $wrapperUstensils.innerHTML += `
+    $selectedUstensils.innerHTML += `
         <div class="selected-ustensil">
             ${e.target.textContent}
             <i class="far fa-times-circle"></i>
@@ -89,7 +89,7 @@ $ustensilsList.addEventListener('click', e => {
 })
 
 
-$wrapperUstensils.addEventListener('click', e => {
+$selectedUstensils.addEventListener('click', e => {
     // console.log(e.target.textContent.trim())
 
     // console.log(e.target)

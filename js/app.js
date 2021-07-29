@@ -1,8 +1,7 @@
 $ingredientsList.style.display = 'none'
 $appliancesList.style.display = 'none'
 $ustensilsList.style.display = 'none'
-$namesList.style.display = 'none'
-
+$mainList.style.display = 'none'
 
 
 // --------------------------------  Filter
@@ -46,9 +45,6 @@ function filterRecipes() {
             }
         }
     }
-
-console.log(displaySelectedRecipes)
-
         $cardsGrid.innerHTML = createRecipeCards(displaySelectedRecipes)
 
 }

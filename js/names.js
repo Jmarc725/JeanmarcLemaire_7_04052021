@@ -6,6 +6,8 @@ function retrieveAllNamesRecipes(recipes){
         let recipeName = recipes[i].name
         allNames.push(recipeName)
     }
+
+    return allNames
 }        
 
 function displayAllNames(names){
@@ -13,12 +15,13 @@ function displayAllNames(names){
     for (let i = 0; i < names.length; i++){
         recipeName += `<li class="recipe-name-list">${names[i]}</li>`
     }
-    $namesList.innerHTML = recipeName
+    $mainList.innerHTML = recipeName
 
+    return recipeName
 }
 
 
-$recipeNameSearch.addEventListener('input', (e) => {
+$mainSearch.addEventListener('input', (e) => {
     const search = e.target.value
     
     const filteredName = filterRecipeElements(allNames, search)
@@ -26,8 +29,8 @@ $recipeNameSearch.addEventListener('input', (e) => {
     displayAllNames(filteredName)
     
     if (search.length >= 3) {
-        $namesList.style.display ='block'
+        $mainList.style.display = 'block'
     } else {
-        $namesList.style.display ='none'
+        $mainList.style.display = 'none'
     }
 })

@@ -3,20 +3,26 @@ const allIngredients = []
 const allAppliances = []
 const allUstensils = []
 const allNames = []
-
-let allRecipes = []
 const displaySelectedRecipes = []
 const filteredIngredientsRecipes = []
+let allRecipes = []
 
-// Recettes intégrales
+
+// Recipes
 const $cardsGrid = document.querySelector('.cards-grid')
 const $recipeCard = document.getElementsByClassName('recipe-card')
 
-// Lists
+// Listes déroulantes
 const $ingredientsList = document.querySelector('.ingredients-list')
 const $appliancesList = document.querySelector('.appliances-list')
 const $ustensilsList = document.querySelector('.ustensils-list')
-const $namesList = document.querySelector('.recipes-names-list')
+const $mainList = document.querySelector('.main-list')
+
+// Inputs Search
+const $mainSearch = document.querySelector('#main-search')
+const $ingredientsSearch = document.querySelector('#ingredients-search')
+const $appliancesSearch = document.querySelector('#appliances-search')
+const $ustensilsSearch = document.querySelector('#ustensils-search')
 
 // Chevrons
 const $ingredientsChevronDown = document.querySelector('.ingredients-chevron-down')
@@ -26,26 +32,12 @@ const $appliancesChevronUp = document.querySelector('.appliances-chevron-up')
 const $ustensilsChevronDown = document.querySelector('.ustensils-chevron-down')
 const $ustensilsChevronUp = document.querySelector('.ustensils-chevron-up')
 
-// Icone fermeture
-const $closeSuggestion = document.querySelector('.fa-times-circle')
-
 // Placeholders
 const $placeholderIngredients = document.querySelector('.search-item-blue')
 const $placeholderAppliances = document.querySelector('.search-item-green')
 const $placeholderUstensils = document.querySelector('.search-item-red')
 
-// Input Search
-const $recipeNameSearch = document.querySelector('#search')
-const $ingredientsSearch = document.querySelector('#ingredients-search')
-const $appliancesSearch = document.querySelector('#appliances-search')
-const $ustensilsSearch = document.querySelector('#ustensils-search')
-
-// Navigation ingredients
-const $ingredientsNavigation = document.querySelector('.nav-ingredients')
-const $wrapperIngredients = document.querySelector('.wrapper-selected-ingredients')
-
-// Navigation appliances
-const $wrapperAppliances = document.querySelector('.wrapper-selected-appliances')
-
-// Navigation ustensils
-const $wrapperUstensils = document.querySelector('.wrapper-selected-ustensils')
+// Tags Elements clicked
+const $selectedIngredients = document.querySelector('.wrapper-selected-ingredients')
+const $selectedAppliances = document.querySelector('.wrapper-selected-appliances')
+const $selectedUstensils = document.querySelector('.wrapper-selected-ustensils')

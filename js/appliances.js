@@ -55,7 +55,7 @@ $appliancesSearch.addEventListener('input', (e) => {
 $appliancesList.addEventListener('click', e => {
 
     if (e.target.className !== 'appliances-list') {
-    $wrapperAppliances.innerHTML += `
+    $selectedAppliances.innerHTML += `
         <div class="selected-appliance">
             ${e.target.textContent}
             <i class="far fa-times-circle"></i>
@@ -80,7 +80,7 @@ $appliancesList.addEventListener('click', e => {
 })
 
 
-$wrapperAppliances.addEventListener('click', e => {
+$selectedAppliances.addEventListener('click', e => {
     // console.log(e.target.textContent.trim())
 
     // console.log(e.target)
